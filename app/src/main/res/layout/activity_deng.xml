@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@mipmap/user_center_bg">
+        <com.bw.ynf.utils.circleimageview.CircleImageView
+            android:id="@+id/user_title_mogu"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/user_icon_no_set"
+            app:border_color="@color/dark"
+            app:border_width="2dp"/>
+    </RelativeLayout>
+    <TextView android:layout_width="120dp"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:gravity="center_horizontal"
+              android:text="登录"
+              android:textSize="25dp"/>
+    <View android:layout_width="match_parent" android:layout_height="15dp"/>
+    <include
+        android:id="@+id/deng_zhong"
+        layout="@layout/activity_deng_zhong"/>
+    <View android:layout_width="match_parent" android:layout_height="1dp"
+          android:background="@color/viewback"
+          android:paddingTop="15dp"/>
+</LinearLayout>

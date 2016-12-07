@@ -3,6 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="dark">#55fff</color>
+    <color name="viewback">#999999</color>
     <color name="zhuCeTextColorFalse">#FC7791</color>
     <color name="zhuCeTextColorTrue">#323232</color>
     <color name="colorWhite">#FFFFFF</color>
