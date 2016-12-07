@@ -9,5 +9,6 @@ import java.util.List;
  */
 
 public interface mainInter {
+    //欢迎页ViewPager的数据回调方法
     void ViewPagerData(List<ImageView> list);
 }

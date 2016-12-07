@@ -1,5 +1,6 @@
 package com.bw.ynf.views.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -83,6 +84,8 @@ public class ZhuYeActivity extends AppCompatActivity implements View.OnClickList
             case R.id.zhu_tv_shopp:
                 list.get(2).setSelected(true);
                 list.get(2).setTextColor(Color.RED);
+                Intent intent=new Intent(ZhuYeActivity.this,LoGinActivity.class);
+                startActivity(intent);
                 break;
             //点击选中我的
             case R.id.zhu_tv_user:
