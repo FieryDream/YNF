@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+    <TextView android:layout_width="0dp"
+              android:id="@+id/deng_fukuan"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:gravity="center_horizontal"
+              android:drawableTop="@mipmap/wait_pay"
+              android:text="待付款"/>
+    <TextView android:layout_width="0dp"
+              android:id="@+id/deng_fahuo"
+              android:gravity="center_horizontal"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:drawableTop="@mipmap/wait_send_good"
+              android:text="待发货"/>
+    <TextView android:layout_width="0dp"
+              android:id="@+id/deng_shouhuo"
+              android:gravity="center_horizontal"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:drawableTop="@mipmap/wait_receive_good"
+              android:text="待收货"/>
+    <TextView android:layout_width="0dp"
+              android:id="@+id/deng_pingjia"
+              android:gravity="center_horizontal"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:drawableTop="@mipmap/wait_evaluate"
+              android:text="待评价"/>
+    <TextView android:layout_width="0dp"
+              android:id="@+id/deng_tuikuan"
+              android:gravity="center_horizontal"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:drawableTop="@mipmap/wait_refund"
+              android:text="退款"/>
+
+
+</LinearLayout>
