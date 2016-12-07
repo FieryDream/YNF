@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_zhu_ye"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/zhuye_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/zhu_tv_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/bottom_tab_home_select"
+            android:gravity="center_horizontal"
+            android:text="首页" />
+
+        <TextView
+            android:id="@+id/zhu_tv_classify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/bottom_tab_classify_select"
+            android:gravity="center_horizontal"
+            android:text="分类" />
+
+        <TextView
+            android:id="@+id/zhu_tv_shopp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/bottom_tab_shopp_select"
+            android:gravity="center_horizontal"
+            android:text="购物车" />
+
+        <TextView
+            android:id="@+id/zhu_tv_user"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/bottom_tab_user_select"
+            android:gravity="center_horizontal"
+            android:text="我的" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/zhu_view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#F2F2F2"
+        android:layout_marginBottom="5dp"
+        android:layout_above="@id/zhuye_ll"></View>
+
+    <FrameLayout
+        android:id="@+id/frame_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/zhu_view"></FrameLayout>
+
+</RelativeLayout>
