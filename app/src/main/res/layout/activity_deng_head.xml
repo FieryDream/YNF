@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <!--背景-->
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@mipmap/user_center_bg">
+        <!--蘑菇-->
+        <com.bw.ynf.utils.circleimageview.CircleImageView
+            android:id="@+id/user_title_mogu"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/user_icon_no_set"
+            app:civ_border_color="@color/dark"
+            app:civ_border_width="2dp"/>
+        <!--设置按钮-->
+        <ImageView android:layout_width="wrap_content"
+                   android:id="@+id/deng_head_shezhi"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentEnd="true" android:layout_alignParentRight="true"
+                   android:layout_alignParentTop="true" android:layout_marginEnd="17dp"
+                   android:layout_marginRight="17dp" android:layout_marginTop="13dp"
+                   android:src="@mipmap/user_setting"/>
+    </RelativeLayout>
+    <!--登录-->
+    <TextView
+        android:id="@+id/deng_head_login"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/user_login_bt_shape"
+        android:gravity="center_horizontal"
+        android:text="登录"
+        android:textColor="@color/colorDeng"
+        android:textSize="25dp"/>
+    <!--昵称-->
+    <TextView android:id="@+id/deng_head_nicheng"
+              android:layout_width="200dp"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:gravity="center_horizontal"
+              android:text="ynf_7719"
+              android:textColor="@color/viewback"
+              android:textSize="18dp"
+              android:visibility="gone"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="15dp"/>
+
+    <!--会员中心-->
+    <TextView android:id="@+id/deng_head_huiyuan"
+              android:layout_width="100dp"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:background="@drawable/user_login_bt_shape"
+              android:gravity="center_horizontal"
+              android:padding="5dp"
+              android:text="会员中心"
+              android:textColor="@color/colorDeng"
+              android:textSize="18dp"
+              android:visibility="gone"/>
+</LinearLayout>
