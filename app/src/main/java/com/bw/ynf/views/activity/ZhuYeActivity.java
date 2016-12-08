@@ -2,6 +2,9 @@ package com.bw.ynf.views.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,11 +12,12 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.bw.ynf.R;
+import com.bw.ynf.views.fragment.UserFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZhuYeActivity extends AppCompatActivity implements View.OnClickListener{
+public class ZhuYeActivity extends FragmentActivity implements View.OnClickListener{
 
     private TextView tvHome;
     private TextView tvClassify;
@@ -21,13 +25,14 @@ public class ZhuYeActivity extends AppCompatActivity implements View.OnClickList
     private TextView tvUser;
     private FrameLayout zhuFrame;
     private List<TextView> list;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zhu_ye);
         //去掉标题栏
-        getSupportActionBar().hide();
+//        this.getSupportActionBar().hide();
         //初始化界面
         initView();
 
@@ -57,6 +62,10 @@ public class ZhuYeActivity extends AppCompatActivity implements View.OnClickList
         //设置默认选中首页
         list.get(0).setSelected(true);
         list.get(0).setTextColor(Color.RED);
+        //Fragment管理者对象
+        fragmentManager = getSupportFragmentManager();
+
+
 
     }
 
@@ -91,6 +100,7 @@ public class ZhuYeActivity extends AppCompatActivity implements View.OnClickList
             case R.id.zhu_tv_user:
                 list.get(3).setSelected(true);
                 list.get(3).setTextColor(Color.RED);
+                fragmentManager.beginTransaction().replace(R.id.frame_content,new UserFragment()).commit();
                 break;
         }
 

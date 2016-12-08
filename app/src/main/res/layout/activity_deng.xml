@@ -14,8 +14,8 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:src="@mipmap/user_icon_no_set"
-            app:border_color="@color/dark"
-            app:border_width="2dp"/>
+            app:civ_border_color="@color/dark"
+            app:civ_border_width="2dp"/>
     </RelativeLayout>
     <TextView android:layout_width="120dp"
               android:layout_height="wrap_content"
@@ -28,6 +28,6 @@
         android:id="@+id/deng_zhong"
         layout="@layout/activity_deng_zhong"/>
     <View android:layout_width="match_parent" android:layout_height="1dp"
-          android:background="@color/viewback"
+          android:background="@color/dark"
           android:paddingTop="15dp"/>
 </LinearLayout>
