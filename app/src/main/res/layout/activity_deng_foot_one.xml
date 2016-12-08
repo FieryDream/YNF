@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:id="@+id/wo_one_confirm"
+              android:background="@drawable/user_login_bg_select"
+              android:padding="10dp">
+    <!--订单图片-->
+    <ImageView
+        android:id="@+id/wo_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/my_order_icon"/>
+    <!--订单名称-->
+    <TextView
+        android:id="@+id/wo_order_name"
+        android:paddingLeft="15dp"
+        android:paddingTop="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的订单"/>
+
+    <View android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:layout_weight="1"/>
+    <!--展示箭头-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:src="@mipmap/order_confirm_next_icon"/>
+</LinearLayout>

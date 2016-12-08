@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:background="@mipmap/user_center_bg">
-        <com.bw.ynf.utils.circleimageview.CircleImageView
-            android:id="@+id/user_title_mogu"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:src="@mipmap/user_icon_no_set"
-            app:civ_border_color="@color/dark"
-            app:civ_border_width="2dp"/>
-    </RelativeLayout>
-    <TextView android:layout_width="120dp"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center_horizontal"
-              android:gravity="center_horizontal"
-              android:text="登录"
-              android:textSize="25dp"/>
-    <View android:layout_width="match_parent" android:layout_height="15dp"/>
-    <include
-        android:id="@+id/deng_zhong"
-        layout="@layout/activity_deng_zhong"/>
-    <View android:layout_width="match_parent" android:layout_height="1dp"
-          android:background="@color/dark"
-          android:paddingTop="15dp"/>
-</LinearLayout>
+              android:layout_height="match_parent">
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+        <!--头布局-->
+        <include
+            android:id="@+id/head"
+            layout="@layout/activity_deng_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="15dp"/>
+        <!--选择按钮布局-->
+        <include
+            layout="@layout/activity_deng_zhong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:background="@color/backColor"
+              android:paddingTop="15dp"/>
+        <!--第一个布局的显示-->
+        <include layout="@layout/activity_deng_foot_one"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="10dp"
+              android:background="@color/backColor"/>
+        <!--第二个布局的显示-->
+        <include layout="@layout/activity_deng_foot_two"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="10dp"
+              android:background="@color/backColor"/>
+        <!--第三个布局的显示-->
+        <include layout="@layout/activity_deng_foot_three"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</ScrollView>
