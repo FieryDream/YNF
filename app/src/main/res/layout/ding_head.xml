@@ -12,7 +12,7 @@
         android:padding="5dp">
         <!--返回箭头-->
         <ImageView
-            android:id="@+id/she_register_back"
+            android:id="@+id/ding_register_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -27,12 +27,13 @@
             android:textColor="#323232"
             android:textSize="20sp"/>
         <TextView
+            android:id="@+id/ding_tuikuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="退款订单"
             android:paddingRight="10dp"
             android:textColor="@color/colorAccent"
-            android:textSize="20sp"/>
+            android:textSize="14sp"/>
     </RelativeLayout>
 </LinearLayout>

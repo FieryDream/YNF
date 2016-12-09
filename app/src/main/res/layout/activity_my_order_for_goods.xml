@@ -6,11 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-   <!--标题头-->
+    <!--标题头-->
     <include layout="@layout/ding_head"/>
+
     <View android:layout_width="match_parent"
           android:layout_height="1dp"
           android:background="@color/backColor"/>
     <!--标题选项-->
+    <include layout="@layout/ding_title"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"/>
 
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/backColor"/>
+    <!--展示区-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ding_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

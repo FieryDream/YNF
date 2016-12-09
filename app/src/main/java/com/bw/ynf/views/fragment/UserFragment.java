@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bw.ynf.R;
+import com.bw.ynf.views.activity.MyOrderForGoods;
 import com.bw.ynf.views.activity.SheZHiActivity;
 
 /**
@@ -36,10 +37,11 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     private TextView login;
     private TextView nicheng;
     private TextView huiyuan;
+    private Intent intent1;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = View.inflate(getActivity(), R.layout.activity_deng, null);
         return view;
     }
@@ -95,42 +97,51 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         huiyuan.setOnClickListener(this);
     }
 
-//条目选择
+    //条目选择
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.deng_head_shezhi://设置界面
-                Intent intent=new Intent(getActivity(),SheZHiActivity.class);
+                Intent intent = new Intent(getActivity(), SheZHiActivity.class);
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.huanying_enter1,R.anim.huanying_exit1);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);
                 break;
             case R.id.deng_head_login://登录
 
                 break;
             case R.id.deng_head_nicheng://昵称
-           //判断登陆成功，显示昵称
+                //判断登陆成功，显示昵称
                 break;
             case R.id.deng_head_huiyuan://会员
-           //判断登陆成功，显示会员
+                //判断登陆成功，显示会员
                 break;
             case R.id.wo_fukuan://我的订单
-
-
+                intent1 = new Intent(getActivity(), MyOrderForGoods.class);
+                startActivity(intent1);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
                 break;
             case R.id.wo_fahuo://我的订单
-
+                intent1 = new Intent(getActivity(), MyOrderForGoods.class);
+                startActivity(intent1);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
                 break;
             case R.id.wo_shouhuo://我的订单
-
+                intent1 = new Intent(getActivity(), MyOrderForGoods.class);
+                startActivity(intent1);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
                 break;
             case R.id.wo_pingjia://我的订单
-
+                intent1 = new Intent(getActivity(), MyOrderForGoods.class);
+                startActivity(intent1);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
                 break;
             case R.id.wo_tuikuan://退款
 
                 break;
             case R.id.wo_one_confirm://我的订单
-
+                intent1 = new Intent(getActivity(), MyOrderForGoods.class);
+                startActivity(intent1);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
                 break;
             case R.id.wo_two_invite_confirm://邀请
 
