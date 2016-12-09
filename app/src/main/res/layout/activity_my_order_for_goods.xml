@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_my_order_for_goods"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+   <!--标题头-->
+    <include layout="@layout/ding_head"/>
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/backColor"/>
+    <!--标题选项-->
+
+</LinearLayout>

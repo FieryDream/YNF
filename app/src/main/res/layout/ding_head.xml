@@ -23,8 +23,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="设置"
+            android:text="我的订单"
             android:textColor="#323232"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="退款订单"
+            android:paddingRight="10dp"
+            android:textColor="@color/colorAccent"
             android:textSize="20sp"/>
     </RelativeLayout>
 </LinearLayout>

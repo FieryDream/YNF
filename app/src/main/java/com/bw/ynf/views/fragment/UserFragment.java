@@ -99,54 +99,55 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.deng_head_shezhi:
+            case R.id.deng_head_shezhi://设置界面
                 Intent intent=new Intent(getActivity(),SheZHiActivity.class);
                 startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1,R.anim.huanying_exit1);
+                break;
+            case R.id.deng_head_login://登录
 
                 break;
-            case R.id.deng_head_login:
+            case R.id.deng_head_nicheng://昵称
+           //判断登陆成功，显示昵称
+                break;
+            case R.id.deng_head_huiyuan://会员
+           //判断登陆成功，显示会员
+                break;
+            case R.id.wo_fukuan://我的订单
+
 
                 break;
-            case R.id.deng_head_nicheng:
+            case R.id.wo_fahuo://我的订单
 
                 break;
-            case R.id.deng_head_huiyuan:
+            case R.id.wo_shouhuo://我的订单
 
                 break;
-            case R.id.wo_fukuan:
+            case R.id.wo_pingjia://我的订单
 
                 break;
-            case R.id.wo_fahuo:
+            case R.id.wo_tuikuan://退款
 
                 break;
-            case R.id.wo_shouhuo:
+            case R.id.wo_one_confirm://我的订单
 
                 break;
-            case R.id.wo_pingjia:
+            case R.id.wo_two_invite_confirm://邀请
 
                 break;
-            case R.id.wo_tuikuan:
+            case R.id.wo_two_face_confirm://刷脸
 
                 break;
-            case R.id.wo_one_confirm:
+            case R.id.wo_three_coupon_confirm://现金券
 
                 break;
-            case R.id.wo_two_invite_confirm:
+            case R.id.wo_three_lottery_confirm://我的抽奖单
 
                 break;
-            case R.id.wo_two_face_confirm:
+            case R.id.wo_three_collection_confirm://我的收藏
 
                 break;
-            case R.id.wo_three_coupon_confirm:
-
-                break;
-            case R.id.wo_three_collection_confirm:
-
-                break;
-            case R.id.wo_three_lottery_confirm:
-
-                break;
-            case R.id.wo_three_personal_confirm:
+            case R.id.wo_three_personal_confirm://客服
 
                 break;
         }
