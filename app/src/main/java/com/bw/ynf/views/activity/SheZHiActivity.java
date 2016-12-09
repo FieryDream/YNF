@@ -1,6 +1,7 @@
 package com.bw.ynf.views.activity;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.content.DialogInterface.OnClickListener;
 import com.bw.ynf.R;
+import com.bw.ynf.utils.circleimageview.application.MyApp;
 
 import static com.bw.ynf.R.color.viewback;
 import static java.security.AccessController.getContext;
@@ -21,11 +23,14 @@ public class SheZHiActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView tuiImge;
     private Button tuilogin;
     private LinearLayout layout,gouwu,yijian,qingchu,guanyu,boda,jiancha;
+    private SharedPreferences.Editor edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_she_zhi);
+        SharedPreferences loginSp = MyApp.getLoginShared();
+        edit = loginSp.edit();
 //        初始化界面
         initView();
     }
@@ -105,6 +110,8 @@ public class SheZHiActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                edit.clear();
+                edit.commit();
                 //注销当前页面
                 finish();
             }

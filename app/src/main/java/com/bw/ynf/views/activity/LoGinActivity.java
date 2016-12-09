@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -18,10 +19,11 @@ import android.widget.Toast;
 
 import com.bw.ynf.R;
 import com.bw.ynf.utils.circleimageview.application.MyApp;
+import com.bw.ynf.views.popwindow.SimplePop;
 
 import java.util.Random;
 
-public class LoGinActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoGinActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView mIvBack;
     private TextView mTvZhuCe;
@@ -36,13 +38,14 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
     private Button mLoginBt;
     private TextView mTvDisanfang;
     private View nightModeView;
-    private boolean flag=false;
+    private boolean flag = false;
     private ImageView mImage;
     private SharedPreferences.Editor loginEdit;
     private SharedPreferences userSp;
     private SharedPreferences loginSp;
     private SharedPreferences.Editor userEdit;
     private int i;
+    private SimplePop pop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,6 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().hide();
         //初始化界面
         initView();
-
 
 
     }
@@ -110,22 +112,22 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             //左上角返回箭头，点击返回主界面
             case R.id.login_back:
                 this.finish();
-                overridePendingTransition(R.anim.login_back_enter,R.anim.login_back_exit);
+                overridePendingTransition(R.anim.login_back_enter, R.anim.login_back_exit);
                 break;
             //注册按钮
             case R.id.zhu_ce_textView:
-                Intent intent=new Intent(LoGinActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(LoGinActivity.this, RegisterActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.huanying_enter1,R.anim.login_back_enter);
+                overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
                 break;
             //御泥坊帐号登录按钮
             case R.id.login_textView_ynf:
                 //点击登录按钮时判断，false代表是账号登录
-                flag=false;
+                flag = false;
                 //设置textView背景颜色
                 mTvYNF.setBackgroundResource(R.drawable.login_shap02);
                 mTvPhone.setBackgroundColor(getResources().getColor(R.color.loginBackColor));
@@ -142,7 +144,7 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
             //手机登录按钮
             case R.id.login_textView_phone:
                 //点击登录按钮时判断，true代表是手机号登录
-                flag=true;
+                flag = true;
                 //设置textView背景颜色
                 mTvPhone.setBackgroundResource(R.drawable.login_shap02);
                 mTvYNF.setBackgroundColor(getResources().getColor(R.color.loginBackColor));
@@ -159,11 +161,11 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
             //获取验证码按钮
             case R.id.login_textView_yanzhengma:
                 String phone = mEtPhone.getText().toString();
-                if(phone!=null&&phone.length()==11){
+                if (phone != null && phone.length() == 11) {
                     Random random = new Random();
                     i = random.nextInt(900001) + 100000;
-                    Toast.makeText(LoGinActivity.this,"验证码发送成功", Toast.LENGTH_SHORT).show();
-                    new Thread(){
+                    Toast.makeText(LoGinActivity.this, "验证码发送成功", Toast.LENGTH_SHORT).show();
+                    new Thread() {
                         @Override
                         public void run() {
                             try {
@@ -174,7 +176,7 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    mEtYzm.setText(i +"");
+                                    mEtYzm.setText(i + "");
                                 }
                             });
                         }
@@ -187,7 +189,7 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
                 break;
             //登录按钮
             case R.id.login_bt:
-                if(flag==false){
+                if (flag == false) {
 
                     //获得用户信息，下面将进行判断
                     String userPhone = userSp.getString("phone", "");
@@ -201,42 +203,41 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
                      * 3、如果获取到的登录信息和输入框中信息相同，则finish()掉当前界面，显示购物车界面
                      * 4、否则提示手机号未注册或账号密码错误
                      */
-                    if(TextUtils.isEmpty(phone1)){
-                        Toast.makeText(LoGinActivity.this,"请输入正确的手机号",Toast.LENGTH_SHORT).show();
-                    }else if(!TextUtils.isEmpty(phone1)&&phone1.length()!=11){
-                        Toast.makeText(LoGinActivity.this,"请输入正确的手机号",Toast.LENGTH_SHORT).show();
-                    }else if(TextUtils.isEmpty(pwd)){
-                        Toast.makeText(LoGinActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
-                    }else if(!TextUtils.equals(userPhone,phone1)){
-                        Toast.makeText(LoGinActivity.this,"手机号未注册",Toast.LENGTH_SHORT).show();
-                    }else if(TextUtils.equals(userPhone,phone1)&&!TextUtils.equals(userPwd,pwd)){
-                        Toast.makeText(LoGinActivity.this,"账号密码错误",Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(LoGinActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-                        loginEdit.putBoolean("succese",true);
+                    if (TextUtils.isEmpty(phone1)) {
+                        Toast.makeText(LoGinActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    } else if (!TextUtils.isEmpty(phone1) && phone1.length() != 11) {
+                        Toast.makeText(LoGinActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    } else if (TextUtils.isEmpty(pwd)) {
+                        Toast.makeText(LoGinActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
+                    } else if (!TextUtils.equals(userPhone, phone1)) {
+                        Toast.makeText(LoGinActivity.this, "手机号未注册", Toast.LENGTH_SHORT).show();
+                    } else if (TextUtils.equals(userPhone, phone1) && !TextUtils.equals(userPwd, pwd)) {
+                        Toast.makeText(LoGinActivity.this, "账号密码错误", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoGinActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        loginEdit.putBoolean("succese", true);
                         loginEdit.commit();
                         finish();
 
-
                     }
-                }else{
+                } else {
                     //获得用户信息，下面将进行判断
                     String userPhone = userSp.getString("phone", "");
                     String phone2 = mEtPhone.getText().toString();
                     String yzm = mEtYzm.getText().toString();
-                    if(TextUtils.isEmpty(phone2)){
-                        Toast.makeText(LoGinActivity.this,"请输入手机号",Toast.LENGTH_SHORT).show();
-                    }else if(phone2.length()!=11){
-                        Toast.makeText(LoGinActivity.this,"请输入正确的手机号",Toast.LENGTH_SHORT).show();
-                    }else if(TextUtils.isEmpty(yzm)){
-                        Toast.makeText(LoGinActivity.this,"请输入验证码",Toast.LENGTH_SHORT).show();
-                    }else if(!TextUtils.equals(yzm,""+i)){
-                        Toast.makeText(LoGinActivity.this,"验证码错误或验证码已失效",Toast.LENGTH_SHORT).show();
-                    }else if(!TextUtils.equals(userPhone,phone2)){
-                        Toast.makeText(LoGinActivity.this,"该手机号未注册",Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(LoGinActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-                        loginEdit.putBoolean("succese",true);
+                    if (TextUtils.isEmpty(phone2)) {
+                        Toast.makeText(LoGinActivity.this, "请输入手机号", Toast.LENGTH_SHORT).show();
+                    } else if (phone2.length() != 11) {
+                        Toast.makeText(LoGinActivity.this, "请输入正确的手机号", Toast.LENGTH_SHORT).show();
+                    } else if (TextUtils.isEmpty(yzm)) {
+                        Toast.makeText(LoGinActivity.this, "请输入验证码", Toast.LENGTH_SHORT).show();
+                    } else if (!TextUtils.equals(yzm, "" + i)) {
+                        Toast.makeText(LoGinActivity.this, "验证码错误或验证码已失效", Toast.LENGTH_SHORT).show();
+                    } else if (!TextUtils.equals(userPhone, phone2)) {
+                        Toast.makeText(LoGinActivity.this, "该手机号未注册", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoGinActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        loginEdit.putBoolean("succese", true);
                         loginEdit.commit();
                         finish();
                     }
@@ -245,16 +246,36 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
                 break;
             //第三方登陆按钮
             case R.id.login_textView_disanfang:
+
+                showPop();
                 break;
         }
     }
 
+
+        //显示Pop
+        public void showPop(){
+            pop = new SimplePop(this, itemsOnClick);
+
+            pop.showAtLocation(mTvDisanfang, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
+        }
+//为弹出窗口实现监听类
+        private View.OnClickListener itemsOnClick = new View.OnClickListener(){
+
+            public void onClick(View v) {
+                pop.dismiss();
+
+            }
+
+        };
+
+
     //点击手机返回键返回主页面
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             finish();
-            overridePendingTransition(R.anim.login_back_enter,R.anim.login_back_exit);
+            overridePendingTransition(R.anim.login_back_enter, R.anim.login_back_exit);
         }
         return true;
     }
