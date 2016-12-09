@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:id="@+id/she_one_jiancha"
+              android:background="@drawable/user_login_bg_select"
+              android:padding="10dp">
+    <!--购物须知-->
+    <TextView
+        android:paddingLeft="15dp"
+        android:paddingTop="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="检查更新"/>
+
+    <View android:layout_width="0dp"
+          android:layout_height="1dp"
+          android:layout_weight="1"/>
+    <!--展示箭头-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="已经是最新版本"/>
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+    <LinearLayout android:id="@+id/she_two_guanyu"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@drawable/user_login_bg_select"
+                  android:orientation="horizontal"
+                  android:padding="10dp">
+        <!--关于我们-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingTop="2dp"
+            android:text="关于我们"/>
+
+        <View android:layout_width="0dp"
+              android:layout_height="1dp"
+              android:layout_weight="1"/>
+        <!--二维码-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@mipmap/about_us_code"/>
+        <!--展示箭头-->
+        <ImageView
+            android:paddingTop="2dp"
+            android:paddingLeft="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@mipmap/order_confirm_next_icon"/>
+    </LinearLayout>
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/backColor"/>
+    <LinearLayout android:id="@+id/she_two_boda"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@drawable/user_login_bg_select"
+                  android:orientation="horizontal"
+                  android:padding="10dp">
+        <!--拨打电话-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingTop="2dp"
+            android:text="拨打电话"/>
+
+        <View android:layout_width="0dp"
+              android:layout_height="1dp"
+              android:layout_weight="1"/>
+        <!--电话号码-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:textColor="@color/colorAccent"
+            android:text="400-688-0900"/>
+    </LinearLayout>
+
+</LinearLayout>

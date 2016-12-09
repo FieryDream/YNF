@@ -1,45 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_she_zhi"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:background="@color/colorWhite"
-        android:orientation="horizontal">
-        <!--返回箭头-->
-        <ImageView
-            android:id="@+id/register_back"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/back_befor"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:textColor="#323232"
-            android:text="设置"
-            android:layout_centerHorizontal="true"/>
-    </RelativeLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/she_bg_color"
+              android:layout_width="wrap_content"
+              android:background="@color/backColor"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+<!--标题-->
+    <include layout="@layout/activity_all_head"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/backColor"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="10dp"
+          android:background="@color/backColor"/>
+    <!--购物 意见 清除-->
+    <include layout="@layout/she_item_three"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="10dp"
+          android:background="@color/backColor"/>
+    <!--关于 电话-->
+    <include layout="@layout/she_item_two"/>
+    <View android:layout_width="match_parent"
+          android:layout_height="10dp"
+          android:background="@color/backColor"/>
+    <!--检查更新-->
+    <include layout="@layout/she_item_one"/>
+    <!--退出登录-->
     <Button
-        android:id="@+id/login_bt"
+        android:id="@+id/she_tui_login_bt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_marginTop="320dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:gravity="center"
+        android:layout_marginTop="70dp"
         android:background="@drawable/login_bt_select"
-        android:textColor="@color/colorWhite"
-        android:text="退出登录"/>
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="退出登录"
+        android:textColor="@color/colorWhite"/>
 
-</RelativeLayout>
+
+</LinearLayout>
