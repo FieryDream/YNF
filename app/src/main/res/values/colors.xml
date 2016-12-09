@@ -11,6 +11,9 @@
     <color name="zhuCeTextColorTrue">#323232</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorLogin">#FC6B87</color>
+    <color name="loginTextViewColor">#646464</color>
+    <color name="loginBackColor">#E7E3DE</color>
     <color name="loginTextColorFalse">#77FC7791</color>
     <color name="loginNightMode">#771E1E1A</color>
+    <color name="blueColor">#14A6DF</color>
 </resources>
