@@ -1,9 +1,11 @@
 package com.bw.ynf.views.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.ynf.R;
+import com.bw.ynf.utils.circleimageview.application.MyApp;
 
 import java.util.Random;
 
@@ -35,11 +38,23 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
     private View nightModeView;
     private boolean flag=false;
     private ImageView mImage;
+    private SharedPreferences.Editor loginEdit;
+    private SharedPreferences userSp;
+    private SharedPreferences loginSp;
+    private SharedPreferences.Editor userEdit;
+    private int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lo_gin);
+        //获得存放用户注册（手机号和密码）信息sp
+        userSp = MyApp.getUserShared();
+        //获得存放登陆信息的sp
+        loginSp = MyApp.getLoginShared();
+        //编辑器
+        userEdit = userSp.edit();
+        loginEdit = loginSp.edit();
         //去除标题栏
         getSupportActionBar().hide();
         //初始化界面
@@ -105,7 +120,7 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
             case R.id.zhu_ce_textView:
                 Intent intent=new Intent(LoGinActivity.this,RegisterActivity.class);
                 startActivity(intent);
-
+                overridePendingTransition(R.anim.huanying_enter1,R.anim.login_back_enter);
                 break;
             //御泥坊帐号登录按钮
             case R.id.login_textView_ynf:
@@ -146,7 +161,7 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
                 String phone = mEtPhone.getText().toString();
                 if(phone!=null&&phone.length()==11){
                     Random random = new Random();
-                    final int i = random.nextInt(900001) + 100000;
+                    i = random.nextInt(900001) + 100000;
                     Toast.makeText(LoGinActivity.this,"验证码发送成功", Toast.LENGTH_SHORT).show();
                     new Thread(){
                         @Override
@@ -159,7 +174,7 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    mEtYzm.setText(i+"");
+                                    mEtYzm.setText(i +"");
                                 }
                             });
                         }
@@ -173,13 +188,59 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
             //登录按钮
             case R.id.login_bt:
                 if(flag==false){
+
+                    //获得用户信息，下面将进行判断
+                    String userPhone = userSp.getString("phone", "");
+                    String userPwd = userSp.getString("pwd", "");
+                    //获得输入框中输入信息
                     String phone1 = mEtPhone.getText().toString();
                     String pwd = mEtPwd.getText().toString();
-                    Log.d("------->>>",phone1+"------"+pwd);
+                    /**
+                     * 1、先判断手机号
+                     * 2、在判断密码
+                     * 3、如果获取到的登录信息和输入框中信息相同，则finish()掉当前界面，显示购物车界面
+                     * 4、否则提示手机号未注册或账号密码错误
+                     */
+                    if(TextUtils.isEmpty(phone1)){
+                        Toast.makeText(LoGinActivity.this,"请输入正确的手机号",Toast.LENGTH_SHORT).show();
+                    }else if(!TextUtils.isEmpty(phone1)&&phone1.length()!=11){
+                        Toast.makeText(LoGinActivity.this,"请输入正确的手机号",Toast.LENGTH_SHORT).show();
+                    }else if(TextUtils.isEmpty(pwd)){
+                        Toast.makeText(LoGinActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
+                    }else if(!TextUtils.equals(userPhone,phone1)){
+                        Toast.makeText(LoGinActivity.this,"手机号未注册",Toast.LENGTH_SHORT).show();
+                    }else if(TextUtils.equals(userPhone,phone1)&&!TextUtils.equals(userPwd,pwd)){
+                        Toast.makeText(LoGinActivity.this,"账号密码错误",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(LoGinActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+                        loginEdit.putBoolean("succese",true);
+                        loginEdit.commit();
+                        finish();
+
+
+                    }
                 }else{
+                    //获得用户信息，下面将进行判断
+                    String userPhone = userSp.getString("phone", "");
                     String phone2 = mEtPhone.getText().toString();
                     String yzm = mEtYzm.getText().toString();
-                    Log.d("------->>>",phone2+"------"+yzm);
+                    if(TextUtils.isEmpty(phone2)){
+                        Toast.makeText(LoGinActivity.this,"请输入手机号",Toast.LENGTH_SHORT).show();
+                    }else if(phone2.length()!=11){
+                        Toast.makeText(LoGinActivity.this,"请输入正确的手机号",Toast.LENGTH_SHORT).show();
+                    }else if(TextUtils.isEmpty(yzm)){
+                        Toast.makeText(LoGinActivity.this,"请输入验证码",Toast.LENGTH_SHORT).show();
+                    }else if(!TextUtils.equals(yzm,""+i)){
+                        Toast.makeText(LoGinActivity.this,"验证码错误或验证码已失效",Toast.LENGTH_SHORT).show();
+                    }else if(!TextUtils.equals(userPhone,phone2)){
+                        Toast.makeText(LoGinActivity.this,"该手机号未注册",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(LoGinActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+                        loginEdit.putBoolean("succese",true);
+                        loginEdit.commit();
+                        finish();
+                    }
+
                 }
                 break;
             //第三方登陆按钮

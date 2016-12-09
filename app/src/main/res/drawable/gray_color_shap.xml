@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval"
     >
-    <solid android:color="@color/colorWhite"></solid>
+    <solid android:color="@color/loginTextViewColor"></solid>
     <corners android:radius="60dp"></corners>
     <size android:width="50dp"
         android:height="50dp"></size>
