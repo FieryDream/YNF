@@ -29,6 +29,8 @@ public class SheZHiActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_she_zhi);
+//        去掉表题头
+        getSupportActionBar().hide();
         SharedPreferences loginSp = MyApp.getLoginShared();
         edit = loginSp.edit();
 //        初始化界面
