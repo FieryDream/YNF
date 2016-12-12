@@ -33,6 +33,8 @@ public class SheZHiActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().hide();
         SharedPreferences loginSp = MyApp.getLoginShared();
         edit = loginSp.edit();
+//        去掉表题头
+        getSupportActionBar().hide();
 //        初始化界面
         initView();
     }
