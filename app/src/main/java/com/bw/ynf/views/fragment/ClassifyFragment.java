@@ -15,9 +15,9 @@ import com.bw.ynf.R;
 
 public class ClassifyFragment extends Fragment {
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
         View view = View.inflate(getActivity(), R.layout.fragment_classify, null);
         return view;
     }
