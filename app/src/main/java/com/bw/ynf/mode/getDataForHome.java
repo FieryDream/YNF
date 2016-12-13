@@ -15,7 +15,7 @@ import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
  * Created by GaoJun on 2016/12/10 0010.
  */
 
-public class getDataForHome {
+public  class getDataForHome {
     private HomeFragmentData homedata;
     private Context context;
 
@@ -24,7 +24,9 @@ public class getDataForHome {
         this.context=context;
     }
 
-    public void getDataFromNet(){
+
+
+    public  void getDataFromNet(){
         //得到requestQueue请求队列对象
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         //得到request对象

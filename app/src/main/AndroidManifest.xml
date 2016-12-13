@@ -3,7 +3,7 @@
           package="com.bw.ynf">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name=".utils.circleimageview.application.MyApp"
@@ -37,6 +37,8 @@
             android:value="@integer/google_play_services_version"/>
 
         <activity android:name=".views.activity.MianMoAcitivity">
+        </activity>
+        <activity android:name=".views.activity.GongXiaoActivity">
         </activity>
     </application>
 

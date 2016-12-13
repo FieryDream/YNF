@@ -16,4 +16,10 @@
     <color name="loginTextColorFalse">#77FC7791</color>
     <color name="loginNightMode">#771E1E1A</color>
     <color name="blueColor">#14A6DF</color>
+    <color name="HunheColor">#3399cc66</color>
+    <color name="zhongColor">#33ff6666</color>
+    <color name="ganColor">#33cc99ff</color>
+    <color name="youColor">#3366cc99</color>
+    <color name="minColor">#3300ffcc</color>
+
 </resources>
