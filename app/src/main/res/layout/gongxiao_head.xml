@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/activity_she_zhi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,31 +12,20 @@
         android:padding="5dp">
         <!--返回箭头-->
         <ImageView
-            android:id="@+id/mian_head_back"
+            android:id="@+id/gongxiao_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:paddingTop="2dp"
             android:background="@drawable/back_befor"/>
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="面膜"
-            android:textColor="#323232"
-            android:textSize="20sp"/>
-        <ImageView
-            android:paddingRight="25dp"
-            android:padding="10dp"
-            android:paddingTop="2dp"
-            android:visibility="gone"
-            android:id="@+id/mian_head_deng"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:background="@mipmap/share_normal"/>
-    </LinearLayout>
+            android:layout_centerHorizontal="true"
+            android:text="按功效"
+            android:textColor="#323232"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
 </LinearLayout>

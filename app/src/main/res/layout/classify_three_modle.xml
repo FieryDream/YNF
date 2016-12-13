@@ -23,47 +23,76 @@
                   android:paddingTop="15dp">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:orientation="horizontal">
-            <ImageView android:layout_width="0dp"
-                       android:id="@+id/classify_three_1"
-                       android:layout_height="wrap_content"
-                       android:layout_weight="1"
-                       android:src="@mipmap/classify_hydrating"/>
-            <ImageView android:layout_width="0dp"
-                       android:id="@+id/classify_three_2"
-                       android:layout_height="wrap_content"
-                       android:layout_weight="1"
-                       android:src="@mipmap/classify_soothing"/>
-        </LinearLayout>
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal">
-            <ImageView android:layout_width="0dp"
-                       android:id="@+id/classify_three_4"
-                       android:layout_height="wrap_content"
-                       android:layout_weight="1"
-                       android:src="@mipmap/classify_control_oil"/>
-            <ImageView android:layout_width="0dp"
-                       android:id="@+id/classify_three_5"
-                       android:layout_height="wrap_content"
-                       android:layout_weight="1"
-                       android:src="@mipmap/classify_whitening"/>
-        </LinearLayout>
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal">
-            <ImageView android:layout_width="0dp"
-                       android:id="@+id/classify_three_6"
-                       android:layout_height="wrap_content"
-                       android:layout_weight="1"
-                       android:src="@mipmap/classify_control_oil"/>
-            <ImageView android:layout_width="0dp"
-                       android:id="@+id/classify_three_7"
-                       android:layout_height="wrap_content"
-                       android:layout_weight="1"
-                       android:src="@mipmap/classify_whitening"/>
+                      android:orientation="horizontal"
+
+                      android:padding="8dp">
+            <TextView android:id="@+id/classify_fu_hun"
+                      android:layout_width="0dp"
+                      android:layout_height="50dp"
+                      android:layout_weight="1"
+                      android:background="@color/HunheColor"
+                      android:gravity="center"
+                      android:scaleType="fitXY"
+                      android:text="#混合性肤质#"/>
+            <View android:layout_width="8dp"
+                  android:layout_height="50dp"/>
+            <TextView android:id="@+id/classify_fu_zhong"
+                      android:layout_width="0dp"
+                      android:layout_height="50dp"
+                      android:layout_weight="1"
+                      android:background="@color/zhongColor"
+                      android:gravity="center"
+                      android:scaleType="fitXY"
+                      android:text="#中性肤质#"/>
         </LinearLayout>
 
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:padding="8dp">
+            <TextView android:id="@+id/classify_fu_gan"
+                      android:layout_width="0dp"
+                      android:layout_height="50dp"
+                      android:layout_weight="1"
+                      android:background="@color/ganColor"
+                      android:gravity="center"
+                      android:scaleType="fitXY"
+                      android:text="#干性肤质#"/>
+            <View android:layout_width="8dp"
+                  android:layout_height="50dp"/>
+            <TextView android:id="@+id/classify_fu_you"
+                      android:layout_width="0dp"
+                      android:layout_height="50dp"
+                      android:layout_weight="1"
+                      android:background="@color/youColor"
+                      android:gravity="center"
+                      android:scaleType="fitXY"
+                      android:text="#油性肤质#"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:padding="8dp">
+            <TextView android:id="@+id/classify_fu_dou"
+                      android:layout_width="0dp"
+                      android:layout_height="50dp"
+                      android:layout_weight="1"
+                      android:background="@color/zhongColor"
+                      android:gravity="center"
+                      android:scaleType="fitXY"
+                      android:text="#痘痘肤质#"/>
+            <View android:layout_width="8dp"
+                  android:layout_height="50dp"/>
+            <TextView android:id="@+id/classify_fu_min"
+                      android:layout_width="0dp"
+                      android:layout_height="50dp"
+                      android:layout_weight="1"
+                      android:background="@color/minColor"
+                      android:gravity="center"
+                      android:scaleType="fitXY"
+                      android:text="#敏感肤质#"/>
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
