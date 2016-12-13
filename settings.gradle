@@ -1,2 +1,6 @@
 include ':app'
+<<<<<<< HEAD
 include ':pullToRefrsh_library'
+=======
+include ':pull_to_library'
+>>>>>>> origin/master

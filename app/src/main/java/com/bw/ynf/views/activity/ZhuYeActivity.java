@@ -42,8 +42,9 @@ public class ZhuYeActivity extends FragmentActivity implements View.OnClickListe
         //获得存放用户登录信息的sp
         sp = MyApp.getLoginShared();
         //去掉标题栏
-//        this.getSupportActionBar().hide();
-        //初始化界面
+//         getActionBar().hide();
+
+        //初始化界面  getSupportActionBar().hide();
         initView();
 
 
