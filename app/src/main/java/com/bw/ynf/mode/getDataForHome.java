@@ -24,11 +24,11 @@ public class getDataForHome {
         this.context=context;
     }
 
-    public void getDataFromNet(){
+    public void getDataFromNet(String url){
         //得到requestQueue请求队列对象
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         //得到request对象
-        StringRequest request = new StringRequest(UrlUtils.HOME_URl, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
