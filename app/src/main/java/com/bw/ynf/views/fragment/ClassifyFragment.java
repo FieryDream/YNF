@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +14,28 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bw.ynf.R;
+import com.bw.ynf.bean.homebean.classify.ClassifyData;
+import com.bw.ynf.bean.homebean.classify.GoodsBrief;
+import com.bw.ynf.interfaces.HomeFragmentData;
 import com.bw.ynf.mode.getDataForHome;
+import com.bw.ynf.presenter.HomeFragmentPresenter;
 import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.activity.GongXiaoActivity;
 import com.bw.ynf.views.activity.MianMoAcitivity;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import static android.R.attr.data;
+import static com.bw.ynf.utils.circleimageview.urlutils.UrlUtils.SORT_URL;
 
 /**
  * Created by GaoJun on 2016/12/7 0007.
  */
 
-public class ClassifyFragment extends Fragment implements View.OnClickListener {
+public class ClassifyFragment extends Fragment implements View.OnClickListener ,HomeFragmentData{
 
 
     private ImageView face, furu, fushui, mianru, qita, shihui;
@@ -41,6 +54,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
     private TextView doudou;
     private TextView mingan;
     private Intent intent1;
+    private ArrayList<GoodsBrief> data;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,13 +69,16 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         initView();
 //        加载数剧
         initData();
+//        展示明星产品
+//        mingxingGridView.setAdapter(new MyMingXingAdapter(getActivity(),data));
 
     }
 
 //        加载数剧
     private void initData() {
     //请求网络
-
+        HomeFragmentPresenter presenter = new HomeFragmentPresenter(this, getActivity());
+        presenter.getData(UrlUtils.SORT_URL);
     }
 
 
@@ -150,5 +167,19 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
 
 
         }
+    }
+
+    @Override
+    public void succes(String str) {
+        Gson gson = new Gson();
+        ClassifyData bean = gson.fromJson(str, ClassifyData.class);
+//        获取数据
+        data = bean.getData();
+
+    }
+
+    @Override
+    public void filed() {
+
     }
 }
