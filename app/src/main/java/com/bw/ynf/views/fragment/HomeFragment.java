@@ -23,6 +23,7 @@ import com.bw.ynf.presenter.HomeFragmentPresenter;
 import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.adapter.homeadapters.HomeFragmentGridViewAdapter;
 import com.bw.ynf.views.adapter.homeadapters.HomeViewPagerAdaptrer;
+import com.bw.ynf.views.adapter.homeadapters.MyRecyclerAdapter;
 import com.bw.ynf.views.adapter.homeadapters.YouHuiViewPagerAdapter;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
@@ -171,7 +172,13 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
         setGridViewAdapter();
         //设置优惠活动的viewPager的适配器
         setYouHuiViewPager();
+        //设置RecyclerView适配器
+        setRecyclerViewAdapter();
 
+    }
+
+    private void setRecyclerViewAdapter() {
+        rlv.setAdapter(new MyRecyclerAdapter(getActivity(),homeBean.getData().getSubjects()));
     }
 
     @Override
