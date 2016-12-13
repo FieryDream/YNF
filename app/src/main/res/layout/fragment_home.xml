@@ -1,7 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDeng">
+    android:background="@color/common_action_bar_splitter"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:background="@color/colorWhite"
+        android:text="御泥坊VIP商城"
+        android:textColor="@color/colorAccent"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/not_net_show"></include>
+        <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+            android:id="@+id/home_pulltorefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/home_fragment_ViewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp">
+
+                    </android.support.v4.view.ViewPager>
+                    <LinearLayout
+                        android:id="@+id/home_fragment_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="center_horizontal"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="horizontal"></LinearLayout>
+                </RelativeLayout>
+
+                <GridView
+                    android:id="@+id/home_fragment_GridView"
+                    android:background="@color/colorWhite"
+                    android:numColumns="4"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+                </GridView>
+                <TextView
+                    android:id="@+id/home_fragment_tv_youhui"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="- 优惠活动 -"/>
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/home_fragment_PagerYouhui"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </android.support.v4.view.ViewPager>
+                <TextView
+                    android:id="@+id/home_fragment_tv_remen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="- 热门专题 -"/>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/home_fragment_recycler_listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+        </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+    </RelativeLayout>
 
 </LinearLayout>
