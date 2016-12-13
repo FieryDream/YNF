@@ -10,11 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-<<<<<<< HEAD
             <option value="$PROJECT_DIR$/pullToRefrsh_library" />
-=======
-            <option value="$PROJECT_DIR$/pull_to_library" />
->>>>>>> origin/master
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

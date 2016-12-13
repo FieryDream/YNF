@@ -4,11 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/YuNiFang.iml" filepath="$PROJECT_DIR$/YuNiFang.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/pullToRefrsh_library/pullToRefrsh_library.iml" filepath="$PROJECT_DIR$/pullToRefrsh_library/pullToRefrsh_library.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/pull_to_library/pull_to_library.iml" filepath="$PROJECT_DIR$/pull_to_library/pull_to_library.iml" />
->>>>>>> origin/master
     </modules>
   </component>
 </project>
