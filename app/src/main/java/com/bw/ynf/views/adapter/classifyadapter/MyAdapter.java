@@ -5,4 +5,5 @@ package com.bw.ynf.views.adapter.classifyadapter;
  */
 
 public class MyAdapter {
+
 }
