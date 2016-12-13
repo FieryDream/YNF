@@ -22,7 +22,7 @@ public class HomeFragmentPresenter {
     private HomeFragmentData homedata;
     private Context context;
 
-    public HomeFragmentPresenter(HomeFragment homedata, Context context) {
+    public HomeFragmentPresenter(HomeFragmentData homedata, Context context) {
         this.homedata=homedata;
         this.context= context;
 

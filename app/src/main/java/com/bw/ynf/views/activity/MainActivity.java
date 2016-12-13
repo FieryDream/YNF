@@ -7,16 +7,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bw.ynf.R;
 import com.bw.ynf.interfaces.mainInter;
 import com.bw.ynf.presenter.mainPreSenter;
 import com.bw.ynf.utils.circleimageview.netutils.JudgeNetState;
-import com.bw.ynf.utils.circleimageview.netutils.NetUtils;
-import com.bw.ynf.views.adapter.Main_DaoHangAdapter;
+import com.bw.ynf.views.adapter.homeadapters.Main_DaoHangAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;

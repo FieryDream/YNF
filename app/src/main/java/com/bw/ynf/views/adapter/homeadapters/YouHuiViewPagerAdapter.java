@@ -1,4 +1,4 @@
-package com.bw.ynf.views.adapter;
+package com.bw.ynf.views.adapter.homeadapters;
 
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
