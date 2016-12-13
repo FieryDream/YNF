@@ -3,21 +3,30 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:orientation="vertical">
         <!--搜索框-->
         <include layout="@layout/classify_head"/>
         <!--间隔线-->
         <View android:layout_width="match_parent"
               android:layout_height="1dp"
               android:background="@color/backColor"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
         <!--第一个布局页面-->
         <include layout="@layout/classify_one_layout"/>
         <!--间隔线-->
         <View android:layout_width="match_parent"
               android:layout_height="10dp"
               android:background="@color/backColor"/>
+        <!--第二个模块-->
+        <include layout="@layout/classify_two_modle"/>
+        <!--间隔线-->
+        <View android:layout_width="match_parent"
+              android:layout_height="10dp"
+
+              android:background="@color/backColor"/>
+        <!--第三个模块-->
+        <include layout="@layout/classify_three_modle"/>
     </LinearLayout>
 
 </LinearLayout>
