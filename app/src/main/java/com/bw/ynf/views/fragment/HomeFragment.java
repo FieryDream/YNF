@@ -1,6 +1,10 @@
 package com.bw.ynf.views.fragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,9 +17,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.bw.ynf.R;
 import com.bw.ynf.bean.homebean.HomeBean;
@@ -23,9 +29,11 @@ import com.bw.ynf.bean.homebean.HotZhuanTi;
 import com.bw.ynf.bean.homebean.YouHui;
 import com.bw.ynf.interfaces.HomeFragmentData;
 import com.bw.ynf.presenter.HomeFragmentPresenter;
+import com.bw.ynf.utils.circleimageview.application.MyApp;
 import com.bw.ynf.utils.circleimageview.netutils.JudgeNetState;
 import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.activity.HomeWebViewActivity;
+import com.bw.ynf.views.activity.LoGinActivity;
 import com.bw.ynf.views.activity.ReMenActivity;
 import com.bw.ynf.views.adapter.homeadapters.HomeFragmentGridViewAdapter;
 import com.bw.ynf.views.adapter.homeadapters.HomeViewPagerAdaptrer;
@@ -67,6 +75,7 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
     private LinearLayoutManager layoutManager;
     private RelativeLayout notNet;
     private boolean state;
+    private Intent intent;
 
 
     @Nullable
@@ -75,6 +84,7 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
 
         //创建局部
         view = inflater.inflate(R.layout.fragment_home, container, false);
+        intent = new Intent(getActivity(), HomeWebViewActivity.class);
         //存放ViewPager图片的集合
         listViewPager = new ArrayList<ImageView>();
         //存放小圆点的集合
@@ -105,11 +115,64 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
              * 广告的viewPager滑动监听
              */
             ViewPagerScollListener();
+            /**
+             * ViewPager下方GridView的点击事件
+             */
+        gv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                /**
+                 * 如果是签到和兑换，那么就先判断是否登陆，如果登陆直接跳转，
+                 * 如果未登录就弹窗提示登录，点击登陆跳转到登陆界面
+                 */
+                if(i%2==0){
+                    SharedPreferences loginSp = MyApp.getLoginShared();
+                    boolean state = loginSp.getBoolean("succese", false);
+                    if(state){
+                        //跳转页面
+                        skipActivity(i);
+                    }else{
+                        Toast.makeText(getActivity(),"登录",Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                        dialog.setTitle("                        登录");
+                        dialog.setMessage("此功能仅限手机号登陆用户使用,请先登录");
+                        dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        dialog.setNeutralButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent in=new Intent(getActivity(), LoGinActivity.class);
+                                startActivity(in);
+                                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);
+                            }
+                        });
+                        dialog.show();
+                    }
+                }else{
+                    skipActivity(i);
+                }
+
+
+            }
+        });
 
         }
 
         return view;
 
+    }
+
+    /**
+     * 跳转页面的方法
+     */
+    private void skipActivity(int i){
+        intent.putExtra("url", homeBean.getData().getAd5().get(i).getAd_type_dynamic_data());
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);
     }
 
     /**
@@ -177,7 +240,6 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
                          * 如果两者相差不超过一秒，就是点击事件，进行页面跳转，超过就是长按时间，停止ViewPager的自动轮播。
                          */
                         if (x1 == x && (upTime - downTime) < 1000) {
-                            Intent intent = new Intent(getActivity(), HomeWebViewActivity.class);
                             intent.putExtra("url", homeBean.getData().getAd1().get(position % listYuanDian.size()).getAd_type_dynamic_data());
                             startActivity(intent);
                             getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);

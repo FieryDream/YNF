@@ -26,9 +26,19 @@ public class MyApp extends Application {
 
 
     private void initShaRed() {
-        //存放是否登陆信息
+        /**
+         * 存放是否登陆信息
+         * 存放的内容为boolean值，key为“succese”，
+         * 例子：loginEdit.putBoolean("succese", true);
+         */
+
         loginSp = getSharedPreferences("loginInfo", MODE_PRIVATE);
-        //存放用户注册（手机号和密码）
+        /**
+         * 存放用户注册（手机号和密码）
+         * 存放的内容是String类型，key分别为手机号：“phone”，密码：“pwd”，
+         * 例子：edit.putString("phone",phone);
+         *      edit.putString("pwd",pwd);
+         */
         userSp = getSharedPreferences("userInfo", MODE_PRIVATE);
     }
     //存放是否登陆信息

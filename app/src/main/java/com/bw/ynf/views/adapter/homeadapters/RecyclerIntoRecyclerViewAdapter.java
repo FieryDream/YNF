@@ -16,19 +16,21 @@ import com.bw.ynf.bean.homebean.XiangQing;
 
 import java.util.ArrayList;
 
-/**HomeFragment里面RecyclerView里面的横向的RecyClerView适配器
+/**
+ * HomeFragment里面RecyclerView里面的横向的RecyClerView适配器
  * Created by GaoJun on 2016/12/13 0013.
  */
 
-public class RecyclerIntoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerIntoRecyclerViewAdapter.ViewHolder>{
+public class RecyclerIntoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerIntoRecyclerViewAdapter.ViewHolder> {
 
     private ArrayList<XiangQing> goodsList;
     private Context context;
+    private IntOnItemClickListener intOnItemClickListener;
 
 
     public RecyclerIntoRecyclerViewAdapter(Context context, ArrayList<XiangQing> goodsList) {
-        this.goodsList=goodsList;
-        this.context=context;
+        this.goodsList = goodsList;
+        this.context = context;
     }
 
     @Override
@@ -42,25 +44,33 @@ public class RecyclerIntoRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         //前六个显示图片，最后一个显示更多的图片
-        if(position<6){
+        if (position < 6) {
 
             Glide.with(context).load(goodsList.get(position).getGoods_img()).into(holder.bigImage);
             Glide.with(context).load(goodsList.get(position).getWatermarkUrl()).into(holder.simImage);
             holder.tvName.setText(goodsList.get(position).getGoods_name());
-            holder.tvPrice.setText("￥ "+goodsList.get(position).getShop_price());
+            holder.tvPrice.setText("￥ " + goodsList.get(position).getShop_price());
             holder.tvPrice.setTextColor(Color.RED);
             holder.linearLayout.setVisibility(View.VISIBLE);
             holder.moerLayout.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.linearLayout.setVisibility(View.GONE);
             holder.moerImage.setImageResource(R.mipmap.home_rank_list_more);
             holder.moerLayout.setVisibility(View.VISIBLE);
 
         }
 
+        if (intOnItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    intOnItemClickListener.onClick(position);
+                }
 
-
+            });
+        }
     }
+
 
     @Override
     public int getItemCount() {
@@ -87,6 +97,14 @@ public class RecyclerIntoRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
             linearLayout = (LinearLayout) itemView.findViewById(R.id.into_recycler_ll);
             moerLayout = (LinearLayout) itemView.findViewById(R.id.into_recycler_moerLL);
         }
+    }
+
+    public interface IntOnItemClickListener {
+        void onClick(int position);
+    }
+
+    public void setIntOnItemClickListener(IntOnItemClickListener intOnItemClickListener) {
+        this.intOnItemClickListener = intOnItemClickListener;
     }
 
 
