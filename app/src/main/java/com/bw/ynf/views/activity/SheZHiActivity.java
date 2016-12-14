@@ -42,7 +42,7 @@ public class SheZHiActivity extends AppCompatActivity implements View.OnClickLis
 //        初始化界面
     private void initView() {
         //返回箭头
-        tuiImge = (ImageView) findViewById(R.id.she_register_back);
+        tuiImge = (ImageView) findViewById(R.id.classify_biaoti_back);
         //退出登录
         tuilogin = (Button) findViewById(R.id.she_tui_login_bt);
         //设置页面的 布局id
@@ -71,7 +71,7 @@ public class SheZHiActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-                    case R.id.she_register_back://返回箭头
+                    case R.id.classify_biaoti_back://返回箭头
                         this.finish();
                         overridePendingTransition(R.anim.login_back_enter,R.anim.login_back_exit);
                         break;
@@ -86,7 +86,7 @@ public class SheZHiActivity extends AppCompatActivity implements View.OnClickLis
                     case R.id.she_three_yijian:
                         break;
                     case R.id.she_three_qingchu:
-                         Toast.makeText(SheZHiActivity.this,"清楚成功",Toast.LENGTH_LONG).show();
+                         Toast.makeText(SheZHiActivity.this,"清除成功",Toast.LENGTH_LONG).show();
                         break;
                     case R.id.she_two_guanyu:
                         break;

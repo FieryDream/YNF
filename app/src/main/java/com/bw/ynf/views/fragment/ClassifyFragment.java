@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.text.TextUtilsCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,40 +17,39 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bw.ynf.R;
+import com.bw.ynf.bean.homebean.classify.Category;
+import com.bw.ynf.bean.homebean.classify.Children;
+import com.bw.ynf.bean.homebean.classify.ClassifyBean;
 import com.bw.ynf.bean.homebean.classify.ClassifyData;
+import com.bw.ynf.bean.homebean.classify.GoodBrief;
 import com.bw.ynf.bean.homebean.classify.GoodsBrief;
+import com.bw.ynf.bean.homebean.classify.XinXiData;
 import com.bw.ynf.interfaces.HomeFragmentData;
-import com.bw.ynf.mode.getDataForHome;
 import com.bw.ynf.presenter.HomeFragmentPresenter;
 import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.activity.GongXiaoActivity;
 import com.bw.ynf.views.activity.MianMoAcitivity;
+import com.bw.ynf.views.activity.classifyactivity.ClassifyItem;
 import com.bw.ynf.views.adapter.classifyadapters.MyMingXingAdapter;
 import com.google.gson.Gson;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
+import static android.R.attr.category;
 import static android.R.attr.data;
-import static com.bw.ynf.utils.circleimageview.urlutils.UrlUtils.SORT_URL;
+import static android.R.attr.name;
 
 /**
  * Created by GaoJun on 2016/12/7 0007.
  */
 
-public class ClassifyFragment extends Fragment implements View.OnClickListener ,HomeFragmentData{
+public class ClassifyFragment extends Fragment implements View.OnClickListener, HomeFragmentData {
 
 
     private ImageView face, furu, fushui, mianru, qita, shihui;
     private LinearLayout bushui;
-    private ImageView shuhuan1, shuhuan6;
-    private ImageView shuhuan2;
-    private ImageView shuhuan3;
-    private ImageView shuhuan4;
-    private ImageView shuhuan5;
+    private ImageView bushui1, shuhuan, kongyou, meibai, jinzhi;
     private GridView mingxingGridView;
-    private GridView fuzhiGridView;
     private TextView hunhe;
     private TextView zhongxing;
     private TextView ganxing;
@@ -57,15 +57,33 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener ,
     private TextView doudou;
     private TextView mingan;
     private Intent intent1;
-    private Handler handle=new Handler(){
+    public boolean flag = false;
+    private ArrayList<Category> category;
+    private ArrayList<GoodBrief> data2;
+    private Handler handle = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            ArrayList<GoodsBrief> data= (ArrayList<GoodsBrief>) msg.obj;
-            //        展示明星产品
-            mingxingGridView.setAdapter(new MyMingXingAdapter(getActivity(),data));
+            switch (msg.what) {
+                case 1://属性集合
+                    category = (ArrayList<Category>) msg.obj;
 
+                    break;
+                case 2:
+                    ArrayList<GoodsBrief> data = (ArrayList<GoodsBrief>) msg.obj;
+                    //        展示明星产品
+                    mingxingGridView.setAdapter(new MyMingXingAdapter(getActivity(), data));
+                    mingxingGridView.setHorizontalSpacing(10);
+                    mingxingGridView.setVerticalSpacing(10);
+
+                    break;
+                case 3:
+                    data2 = (ArrayList<GoodBrief>) msg.obj;
+
+                    break;
+            }
         }
     };
+    private String id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,16 +96,38 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener ,
         super.onActivityCreated(savedInstanceState);
 //        初始化View
         initView();
-//        加载数剧
-        initData();
+//        加载分类页面数剧
+        initData(UrlUtils.SORT_URL);
 
     }
 
-//        加载数剧
-    private void initData() {
-    //请求网络
+    //获取集合类型数据
+    public String getDataType(ArrayList<Category> categor, String shu, String name) {
+        if (categor != null) {
+
+            for (int i = 0; i < categor.size(); i++) {
+                Category category = categor.get(i);
+                String cat_name = category.getCat_name();
+                if (cat_name.equals(shu)) {
+                    ArrayList<Children> children = category.getChildren();
+                    for (int j = 0; j < children.size(); j++) {
+                        Children children1 = children.get(j);
+                        String cat_name1 = children1.getCat_name();
+                        if (cat_name1.equals(name)) {
+                            id = children1.getId();
+                        }
+                    }
+                }
+            }
+        }
+        return UrlUtils.SORT_URL_item + id;//新的，拼接新的url地址
+    }
+
+    //        加载数剧
+    private void initData(String str) {
+        //请求网络
         HomeFragmentPresenter presenter = new HomeFragmentPresenter(this, getActivity());
-        presenter.getData(UrlUtils.SORT_URL);
+        presenter.getData(str);
     }
 
 
@@ -107,8 +147,17 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener ,
         qita.setOnClickListener(this);
         shihui.setOnClickListener(this);
 //        第二个按功效
-        bushui = (LinearLayout) getView().findViewById(R.id.classify_two_gongneng);
-        bushui.setOnClickListener(this);
+//        bushui = (LinearLayout) getView().findViewById(R.id.classify_two_gongneng);
+        bushui1 = (ImageView) getView().findViewById(R.id.classify_two_bushui);
+        shuhuan = (ImageView) getView().findViewById(R.id.classify_two_shuhuan);
+        kongyou = (ImageView) getView().findViewById(R.id.classify_two_kongyou);
+        meibai = (ImageView) getView().findViewById(R.id.classify_two_meibai);
+        jinzhi = (ImageView) getView().findViewById(R.id.classify_two_jinzhi);
+        bushui1.setOnClickListener(this);
+        shuhuan.setOnClickListener(this);
+        kongyou.setOnClickListener(this);
+        meibai.setOnClickListener(this);
+        jinzhi.setOnClickListener(this);
 
 //        明星产品
         mingxingGridView = (GridView) getView().findViewById(R.id.classify_four_mingxing);
@@ -136,22 +185,59 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener ,
                 getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
                 break;
             case R.id.classify_one_furu://润肤乳
+                if (category != null) {
 
+                    String newUrl = getDataType(category, "按属性", "润肤乳");
+                    Intent intent2 = new Intent(getActivity(), ClassifyItem.class);
+                    intent2.putExtra("url", newUrl);
+                    startActivity(intent2);
+
+                }
+                //跳转到展示页面
                 break;
             case R.id.classify_one_fushui://润肤水
-
+                String id1 = getDataType(category, "按属性", "润肤水");
+                Log.d("id--------->", id1);
                 break;
             case R.id.classify_one_mianru://洁面乳
-
+                String id2 = getDataType(category, "按属性", "洁面乳");
+                Log.d("id--------->", id2);
                 break;
             case R.id.classify_one_qita://其他
-
+                String id3 = getDataType(category, "按属性", "其他");
+                Log.d("id--------->", id3);
                 break;
             case R.id.classify_one_shihui://实惠套餐
-
+                String id4 = getDataType(category, "按属性", "实惠套餐");
+                Log.d("id--------->", id4);
                 break;
-            case R.id.classify_two_gongneng://第二个功能控件-按功效
-                intent1 = new Intent(getActivity(),GongXiaoActivity.class);
+            case R.id.classify_two_bushui://第二个功能控件-补水
+                intent1 = new Intent(getActivity(), GongXiaoActivity.class);
+                intent1.putExtra("flag", 0);
+                startActivity(intent1);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+                break;
+            case R.id.classify_two_shuhuan://第二个功能控件-舒缓
+                intent1 = new Intent(getActivity(), GongXiaoActivity.class);
+                intent1.putExtra("flag", 1);
+                startActivity(intent1);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+                break;
+            case R.id.classify_two_kongyou://第二个功能控件-控油
+                intent1 = new Intent(getActivity(), GongXiaoActivity.class);
+                intent1.putExtra("flag", 2);
+                startActivity(intent1);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+                break;
+            case R.id.classify_two_meibai://第二个功能控件-美白
+                intent1 = new Intent(getActivity(), GongXiaoActivity.class);
+                intent1.putExtra("flag", 3);
+                startActivity(intent1);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+                break;
+            case R.id.classify_two_jinzhi://第二个功能控件-紧致
+                intent1 = new Intent(getActivity(), GongXiaoActivity.class);
+                intent1.putExtra("flag", 4);
                 startActivity(intent1);
                 getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
                 break;
@@ -180,13 +266,56 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener ,
 
     @Override
     public void succes(String str) {
-        Gson gson = new Gson();
-        ClassifyData bean = gson.fromJson(str, ClassifyData.class);
+//        if(flag=false){
+        getSuccess(flag, str);
+//        Gson gson = new Gson();
+//            ClassifyBean bean = gson.fromJson(str, ClassifyBean.class);
+////        获取数据
+//            ClassifyData data = bean.getData();
+//            ArrayList<Category> category = data.getCategory();//属性集合
+//            Message msg = new Message();
+//            msg.what = 1;
+//            msg.obj = category;
+//            handle.sendMessage(msg);
+//            ArrayList<GoodsBrief> goodsBrief = data.getGoodsBrief();//明星产品
+//            Message msg1 = new Message();
+//            msg1.what = 2;
+//            msg1.obj = goodsBrief;
+//            handle.sendMessage(msg1);
+//        }
+//        else if(flag=true){
+//            Gson gson = new Gson();
+//            XinXiData xiData = gson.fromJson(str, XinXiData.class);
+//            ArrayList<GoodBrief> data = xiData.getData();
+//            Message msg3 = new Message();
+//            msg3.what = 3;
+//            msg3.obj = data;
+//            handle.sendMessage(msg3);
+//
+//        }
+
+
+    }
+
+    private void getSuccess(boolean flag, String str) {
+
+
+//
+            Gson gson = new Gson();
+            ClassifyBean bean = gson.fromJson(str, ClassifyBean.class);
 //        获取数据
-        ArrayList<GoodsBrief> data = bean.getData();
-        Message msg=new Message();
-        msg.obj=data;
-        handle.sendMessage(msg);
+            ClassifyData data = bean.getData();
+            ArrayList<Category> category = data.getCategory();//属性集合
+            Message msg = new Message();
+            msg.what = 1;
+            msg.obj = category;
+            handle.sendMessage(msg);
+            ArrayList<GoodsBrief> goodsBrief = data.getGoodsBrief();//明星产品
+            Message msg1 = new Message();
+            msg1.what = 2;
+            msg1.obj = goodsBrief;
+            handle.sendMessage(msg1);
+
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.io.Serializable;
  * on 2016/12/13.
  */
 
-public class GoodsBrief implements Serializable{
+public class GoodBrief implements Serializable{
     private String goods_img;//大图
     private String watermarkUrl;
     private String efficacy;//标题
@@ -76,7 +76,7 @@ public class GoodsBrief implements Serializable{
                 '}';
     }
 
-    public GoodsBrief(String goods_img, String watermarkUrl, String efficacy, String goods_name, float shop_price, int market_price) {
+    public GoodBrief(String goods_img, String watermarkUrl, String efficacy, String goods_name, float shop_price, int market_price) {
         this.goods_img = goods_img;
         this.watermarkUrl = watermarkUrl;
         this.efficacy = efficacy;
@@ -85,7 +85,7 @@ public class GoodsBrief implements Serializable{
         this.market_price = market_price;
     }
 
-    public GoodsBrief() {
+    public GoodBrief() {
         super();
     }
 }

@@ -9,5 +9,6 @@
               android:background="@drawable/user_login_bt_shape"
               android:drawableLeft="@drawable/icon_search"
               android:hint="请输入商品名称"
+              android:textColor="@color/backColor"
               android:padding="5dp"/>
 </LinearLayout>
