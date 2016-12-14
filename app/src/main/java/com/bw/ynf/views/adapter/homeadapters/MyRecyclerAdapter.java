@@ -18,7 +18,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bw.ynf.R;
 import com.bw.ynf.bean.homebean.HotZhuanTi;
+import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.activity.ReMenActivity;
+import com.bw.ynf.views.activity.XiangQingActivity;
 
 import java.util.ArrayList;
 
@@ -63,7 +65,11 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
             @Override
             public void onClick(int pos) {
                 if(pos<6){
-                    Toast.makeText(context,"跳转到详情",Toast.LENGTH_SHORT).show();
+                    String id = subjects.get(position).getGoodsList().get(pos).getId();
+                    String url = UrlUtils.GOODS_URL + id;
+                    Intent in=new Intent(context, XiangQingActivity.class);
+                    in.putExtra("url",url);
+                    context.startActivity(in);
                 }else {
                     Intent intent=new Intent(context, ReMenActivity.class);
                     //实例化一个bundle对象，将要传递过去的集合数据放入bundle，
