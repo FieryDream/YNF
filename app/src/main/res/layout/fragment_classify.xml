@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
     <!--搜索框-->
-    <include layout="@layout/classify_head"/>
+    <include layout="@layout/classify_head" />
     <!--间隔线-->
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout android:layout_width="wrap_content"
-                      android:layout_height="match_parent"
-                      android:orientation="vertical">
-            <!--第一个布局页面-->
-            <include layout="@layout/classify_one_layout"/>
-            <!--间隔线-->
-            <View android:layout_width="match_parent"
-                  android:layout_height="10dp"
-                  android:background="@color/backColor"/>
-            <!--第二个模块-->
-            <include layout="@layout/classify_two_modle"/>
-            <!--间隔线-->
-            <View android:layout_width="match_parent"
-                  android:layout_height="10dp"
 
-                  android:background="@color/backColor"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--第一个布局页面-->
+            <include layout="@layout/classify_one_layout" />
+            <!--间隔线-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/backColor" />
+            <!--第二个模块-->
+            <include layout="@layout/classify_two_modle" />
+            <!--间隔线-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+
+                android:background="@color/backColor" />
             <!--第三个模块-->
-            <include layout="@layout/classify_three_modle"/>
+            <include layout="@layout/classify_three_modle" />
             <!--第四个模块—明星产品-->
-            <include layout="@layout/classify_four"/>
+            <include layout="@layout/classify_four" />
             <!--查看全部商品-->
             <TextView
                 android:id="@+id/classify_souyou"
@@ -38,11 +43,13 @@
                 android:background="@color/backColor"
                 android:gravity="center"
                 android:paddingTop="10dp"
-                android:text="查看所有商品"/>
+                android:text="查看所有商品" />
         </LinearLayout>
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
-    <View android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:background="@color/backColor"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/backColor" />
 
 </LinearLayout>

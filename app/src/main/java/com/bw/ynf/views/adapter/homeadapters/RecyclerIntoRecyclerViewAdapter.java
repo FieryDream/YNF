@@ -16,7 +16,7 @@ import com.bw.ynf.bean.homebean.XiangQing;
 
 import java.util.ArrayList;
 
-/**
+/**HomeFragment里面RecyclerView里面的横向的RecyClerView适配器
  * Created by GaoJun on 2016/12/13 0013.
  */
 
@@ -41,7 +41,7 @@ public class RecyclerIntoRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        //前六个显示图片，最后一个现实更多的图片
+        //前六个显示图片，最后一个显示更多的图片
         if(position<6){
 
             Glide.with(context).load(goodsList.get(position).getGoods_img()).into(holder.bigImage);
