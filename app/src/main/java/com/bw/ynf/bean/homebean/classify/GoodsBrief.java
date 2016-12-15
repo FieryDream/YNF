@@ -11,8 +11,8 @@ public class GoodsBrief {
     private String watermarkUrl;
     private String efficacy;//标题
     private String goods_name;//介绍
-    private float shop_price;//现价
-    private int market_price;//原价
+    private double shop_price;//现价
+    private double market_price;//原价
 
     public String getGoods_img() {
         return goods_img;
@@ -46,7 +46,7 @@ public class GoodsBrief {
         this.goods_name = goods_name;
     }
 
-    public float getShop_price() {
+    public double getShop_price() {
         return shop_price;
     }
 
@@ -54,7 +54,7 @@ public class GoodsBrief {
         this.shop_price = shop_price;
     }
 
-    public int getMarket_price() {
+    public double getMarket_price() {
         return market_price;
     }
 
