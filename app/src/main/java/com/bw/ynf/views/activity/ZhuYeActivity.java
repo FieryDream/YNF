@@ -3,18 +3,16 @@ package com.bw.ynf.views.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.bw.ynf.R;
 import com.bw.ynf.utils.circleimageview.application.MyApp;
+import com.bw.ynf.utils.circleimageview.netutils.JudgeNetState;
 import com.bw.ynf.views.fragment.ClassifyFragment;
 import com.bw.ynf.views.fragment.HomeFragment;
 import com.bw.ynf.views.fragment.ShopFragment;
@@ -23,6 +21,9 @@ import com.bw.ynf.views.fragment.UserFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 御泥坊的主界面，最下方有四个按钮，分别对应着四个Fragment分类
+ */
 public class ZhuYeActivity extends FragmentActivity implements View.OnClickListener{
 
     private TextView tvHome;
@@ -34,17 +35,20 @@ public class ZhuYeActivity extends FragmentActivity implements View.OnClickListe
     private FragmentManager fragmentManager;
     private MyApp app;
     private SharedPreferences sp;
+    private boolean state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zhu_ye);
-        //获得存放用户登录信息的sp
-        sp = MyApp.getLoginShared();
-        //去掉标题栏
-//         getActionBar().hide();
 
-        //初始化界面  getSupportActionBar().hide();
+        /**
+         * 获得存放用户登录信息的sp
+         */
+        sp = MyApp.getLoginShared();
+        /**
+         * 初始化界面
+         */
         initView();
 
 

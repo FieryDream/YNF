@@ -4,9 +4,9 @@ package com.bw.ynf.utils.circleimageview.urlutils;
  * Created by GaoJun on 2016/11/29.
  */
 public class UrlUtils {
-
+    //首页的URL
     public static final String HOME_URl = "http://m.yunifang.com/yunifang/mobile/home?random=59676&encode=62d458fefce9c740359873cc19b05188";
-
+    //查看全部的URL
     public static final String ALL_GOODS_URL = "http://m.yunifang.com/yunifang/mobile/goods/getall?random=87749&encode=ac6bd45b8f50b626a6843b294af8fed5";
 
     //三人成团

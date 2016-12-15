@@ -61,11 +61,6 @@ public class HomeFragmentPresenter {
         }
     }
 
-    //优惠活动的ViewPager数据
-    public void initYouHui(){
-
-
-    }
 
 
 }

@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:gravity="center"
         android:padding="5dp"
         android:background="@color/colorWhite"
@@ -47,14 +47,14 @@
                         android:orientation="horizontal"></LinearLayout>
                 </RelativeLayout>
 
-                <GridView
+                <com.bw.ynf.views.customClass.MyGridView
                     android:id="@+id/home_fragment_GridView"
                     android:background="@color/colorWhite"
                     android:numColumns="4"
                     android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="180dp">
-                </GridView>
+                    android:layout_height="wrap_content">
+                </com.bw.ynf.views.customClass.MyGridView>
                 <TextView
                     android:layout_marginTop="10dp"
                     android:id="@+id/home_fragment_tv_youhui"

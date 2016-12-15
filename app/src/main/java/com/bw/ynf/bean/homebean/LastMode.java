@@ -10,17 +10,19 @@ public class LastMode {
     private double shop_price;
     private String goods_img;
     private String watermarkUrl;
+    private String id;
 
     public LastMode() {
     }
 
-    public LastMode(String efficacy, String goods_name, double market_price, double shop_price, String goods_img, String watermarkUrl) {
+    public LastMode(String efficacy, String goods_name, double market_price, double shop_price, String goods_img, String watermarkUrl, String id) {
         this.efficacy = efficacy;
         this.goods_name = goods_name;
         this.market_price = market_price;
         this.shop_price = shop_price;
         this.goods_img = goods_img;
         this.watermarkUrl = watermarkUrl;
+        this.id = id;
     }
 
     public String getEfficacy() {
@@ -69,5 +71,13 @@ public class LastMode {
 
     public void setWatermarkUrl(String watermarkUrl) {
         this.watermarkUrl = watermarkUrl;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

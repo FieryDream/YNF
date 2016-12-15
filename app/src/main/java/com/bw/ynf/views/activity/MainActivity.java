@@ -34,7 +34,9 @@ public class MainActivity extends AppCompatActivity implements mainInter {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //得到intent对象
+        /**
+         * 得到intent对象
+         */
         intent = new Intent(MainActivity.this, ZhuYeActivity.class);
         sp = getSharedPreferences("info", MODE_PRIVATE);
         edit = sp.edit();
@@ -122,8 +124,7 @@ public class MainActivity extends AppCompatActivity implements mainInter {
                             finish();
                             startActivity(intent);
                             overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);
-                            //判断网络连接状态
-                            JudgeNetState.netState(MainActivity.this);
+
                         }
 
 
@@ -135,7 +136,9 @@ public class MainActivity extends AppCompatActivity implements mainInter {
     }
 
 
-    //初始化界面的方法
+    /**
+     * 初始化界面的方法
+     */
     private void init() {
         ivHuanying = (ImageView) findViewById(R.id.iv_huanying);
         mainViewPager = (ViewPager) findViewById(R.id.main_ViewPager);
