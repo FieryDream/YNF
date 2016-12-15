@@ -19,8 +19,9 @@ public class UrlUtils {
     public static final String GOODS_URL = "http://m.yunifang.com/yunifang/mobile/goods/detail?random=6716&encode=b02382bd9e457e06e09b68a6a4f26eb4&id=";
 
     //分类页
-    public static final String SORT_URL = "http://m.yunifang.com/yunifang/mobile/goods/getall?random=92414&encode=33984fb43bc319ca16f9b7efb4baf895&category_id=";
-
+    public static final String SORT_URL = "http://m.yunifang.com/yunifang/mobile/category/list?random=60729&encode=d5f7520dad446ad974110b1b2cb499c8";
+   //分类——每个类别页
+   public static final String SORT_URL_item ="http://m.yunifang.com/yunifang/mobile/goods/getall?random=68506&encode=21f7b9924f3c19bc280825a2b90f13c3&category_id=";
 
     //
 

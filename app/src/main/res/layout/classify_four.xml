@@ -21,7 +21,7 @@
 
     <GridView android:id="@+id/classify_four_mingxing"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+              android:layout_height="1000dp"
               android:numColumns="2"
               android:padding="8dp"
               android:paddingBottom="10dp"

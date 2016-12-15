@@ -9,24 +9,35 @@ import java.util.ArrayList;
  */
 
 public class ClassifyData {
-    private ArrayList<GoodsBrief> data;
+    private ArrayList<Category> category;
+    private ArrayList<GoodsBrief> goodsBrief;
 
-    public ClassifyData(ArrayList<GoodsBrief> data) {
-        this.data = data;
+    public ClassifyData(ArrayList<Category> category, ArrayList<GoodsBrief> goodsBrief) {
+        this.category = category;
+        this.goodsBrief = goodsBrief;
     }
 
-    public ArrayList<GoodsBrief> getData() {
-        return data;
+    public ArrayList<GoodsBrief> getGoodsBrief() {
+        return goodsBrief;
     }
 
-    public void setData(ArrayList<GoodsBrief> data) {
-        this.data = data;
+    public void setGoodsBrief(ArrayList<GoodsBrief> goodsBrief) {
+        this.goodsBrief = goodsBrief;
+    }
+
+    public ArrayList<Category> getCategory() {
+        return category;
+    }
+
+    public void setCategory(ArrayList<Category> category) {
+        this.category = category;
     }
 
     @Override
     public String toString() {
         return "ClassifyData{" +
-                "data=" + data +
+                "category=" + category +
+                ", goodsBrief=" + goodsBrief +
                 '}';
     }
 

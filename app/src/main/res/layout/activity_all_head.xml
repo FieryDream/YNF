@@ -12,7 +12,7 @@
         android:padding="5dp">
         <!--返回箭头-->
         <ImageView
-            android:id="@+id/she_register_back"
+            android:id="@+id/classify_biaoti_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -20,6 +20,7 @@
             android:layout_marginLeft="20dp"
             android:background="@drawable/back_befor"/>
         <TextView
+            android:id="@+id/classify_biaoti_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
