@@ -105,7 +105,7 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
              * 广告的viewPager滑动监听
              */
             ViewPagerScollListener();
-            
+
         }
 
         return view;
