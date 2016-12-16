@@ -29,7 +29,7 @@ public class ClassifyItem extends AppCompatActivity implements View.OnClickListe
     private ImageView back;
     private TextView biaoti;
     private GridView gridView;
-    private int i;
+
      Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -52,6 +52,7 @@ public class ClassifyItem extends AppCompatActivity implements View.OnClickListe
 //        请求网络
         initData(url);
 
+
     }
     //        加载数剧
     private void initData(String str) {
@@ -63,8 +64,32 @@ public class ClassifyItem extends AppCompatActivity implements View.OnClickListe
     private String  initData() {
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
+         int i = intent.getIntExtra("fen", -1);
+        switch (i) {
+            case 1:
+                biaoti.setText("润肤乳");
+                break;
+            case 2:
+                biaoti.setText("润肤水");
+                break;
+            case 3:
+                biaoti.setText("洁面乳");
+                break;
+            case 4:
+                biaoti.setText("其他");
+                break;
+            case 5:
+                biaoti.setText("实惠套餐");
+                break;
+            case 6:
+                biaoti.setText("润肤水");
+                break;
+            case 7:
+                biaoti.setText("润肤水");
+                break;
 
-        return url;
+        }
+        return url ;
 
     }
 //修改标题
@@ -72,14 +97,7 @@ public class ClassifyItem extends AppCompatActivity implements View.OnClickListe
     private void initView() {
         back = (ImageView) findViewById(R.id.classify_biaoti_back);
         biaoti = (TextView) findViewById(R.id.classify_biaoti_tv);
-        switch (i) {
-            case 1:
-                biaoti.setText("润肤乳");
-                break;
-            case 2:
 
-                break;
-        }
 
 
         gridView = (GridView) findViewById(R.id.classify_biaoti_gridview);

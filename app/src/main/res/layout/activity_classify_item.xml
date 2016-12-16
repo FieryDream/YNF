@@ -8,23 +8,20 @@
     android:orientation="vertical">
     <!--头标题-->
     <include layout="@layout/activity_all_head"/>
-    <!--间隔线-->
-    <View android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:background="@color/backColor"/>
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:orientation="vertical">
-        <GridView android:id="@+id/classify_biaoti_gridview"
+        <com.bw.ynf.views.customClass.MyGridView
+                  android:id="@+id/classify_biaoti_gridview"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:numColumns="2"
                   android:padding="8dp"
-                  android:paddingBottom="10dp"
                   android:paddingTop="18dp">
 
-        </GridView>
+
+        </com.bw.ynf.views.customClass.MyGridView>
 
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 </LinearLayout>

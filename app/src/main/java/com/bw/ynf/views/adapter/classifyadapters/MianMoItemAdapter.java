@@ -2,38 +2,39 @@ package com.bw.ynf.views.adapter.classifyadapters;
 
 import android.graphics.Paint;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bw.ynf.R;
 import com.bw.ynf.bean.homebean.classify.GoodBrief;
-import com.bw.ynf.bean.homebean.classify.GoodsBrief;
 
 import java.util.ArrayList;
 
 /**
  * 类的用途：
  * Created by lushangren
- * on 2016/12/13.
+ * on 2016/12/15.
  */
 
-public class MyMingXingAdapter extends BaseAdapter {
+public class MianMoItemAdapter extends BaseAdapter {
     private FragmentActivity activity;
-    private ArrayList<GoodsBrief> data;
+    private ArrayList<GoodBrief> data;
 
-    public MyMingXingAdapter(FragmentActivity activity, ArrayList<GoodsBrief> data) {
+    public MianMoItemAdapter(FragmentActivity activity, ArrayList<GoodBrief> data) {
+        Log.e("Adapter-data|----->",""+data);
         this.activity = activity;
         this.data = data;
     }
 
-
-
     @Override
     public int getCount() {
+        Log.e("getCount||||||||----->",""+data.size());
         return data.size();
     }
 
@@ -49,7 +50,8 @@ public class MyMingXingAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View inflate = view.inflate(activity, R.layout.mingxing_item, null);
+        View inflate = View.inflate(activity, R.layout.mingxing_item, null);
+
         ImageView bagImage = (ImageView) inflate.findViewById(R.id.mingxing_bagImage);
         ImageView smallImage = (ImageView) inflate.findViewById(R.id.mingxing_smallImage);
         TextView title = (TextView) inflate.findViewById(R.id.mingxing_title);
@@ -64,6 +66,7 @@ public class MyMingXingAdapter extends BaseAdapter {
         oldprice.setText("￥"+data.get(i).getMarket_price());
         //数字上画斜线
         oldprice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+
         return inflate;
     }
 }

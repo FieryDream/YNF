@@ -102,6 +102,13 @@ public class MainActivity extends AppCompatActivity implements mainInter {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+//        timer.c
+    }
+
     /**
      * 打开软件先显示欢迎图片，3秒后判断flag，为false就显示欢迎页，为true直接跳转到主界面
      */

@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import static android.R.attr.category;
 import static android.R.attr.data;
 import static android.R.attr.name;
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 /**
  * Created by GaoJun on 2016/12/7 0007.
@@ -179,70 +180,57 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.classify_one_face:
-                Intent intent = new Intent(getActivity(), MianMoAcitivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+            case R.id.classify_one_face://面膜
+                if (category != null) {
+                    //获取url地址
+                    String tieUrl = getDataType(category, "按属性", "贴式面膜");
+                    String shuiUrl = getDataType(category, "按属性", "睡眠面膜");
+                    String niUrl = getDataType(category, "按属性", "泥浆面膜");
+                    ArrayList<String> newUrl = new ArrayList<>();
+                    newUrl.add(tieUrl);
+                    newUrl.add(shuiUrl);
+                    newUrl.add(niUrl);
+                    //跳转到展示页面
+                    Intent intent2 = new Intent(getActivity(), MianMoAcitivity.class);
+                    intent2.putExtra("fen", 1);
+                    intent2.putStringArrayListExtra("newUrl", newUrl);
+                    startActivity(intent2);
+                    getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+                }
+
                 break;
             case R.id.classify_one_furu://润肤乳
-                if (category != null) {
-
-                    String newUrl = getDataType(category, "按属性", "润肤乳");
-                    Intent intent2 = new Intent(getActivity(), ClassifyItem.class);
-                    intent2.putExtra("url", newUrl);
-                    startActivity(intent2);
-
-                }
-                //跳转到展示页面
+                getOneIntent("润肤乳", 1);
                 break;
             case R.id.classify_one_fushui://润肤水
-                String id1 = getDataType(category, "按属性", "润肤水");
-                Log.d("id--------->", id1);
+                getOneIntent("润肤水", 2);
                 break;
             case R.id.classify_one_mianru://洁面乳
-                String id2 = getDataType(category, "按属性", "洁面乳");
-                Log.d("id--------->", id2);
+                getOneIntent("洁面乳", 3);
                 break;
             case R.id.classify_one_qita://其他
-                String id3 = getDataType(category, "按属性", "其他");
-                Log.d("id--------->", id3);
+                getOneIntent("其他", 4);
                 break;
             case R.id.classify_one_shihui://实惠套餐
-                String id4 = getDataType(category, "按属性", "实惠套餐");
-                Log.d("id--------->", id4);
+                getOneIntent("实惠套餐", 5);
                 break;
-            case R.id.classify_two_bushui://第二个功能控件-补水
-                intent1 = new Intent(getActivity(), GongXiaoActivity.class);
-                intent1.putExtra("flag", 0);
-                startActivity(intent1);
-                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+            case R.id.classify_two_bushui://第二个功能控件-"补水保湿"
+                getTwoIntent();
                 break;
-            case R.id.classify_two_shuhuan://第二个功能控件-舒缓
-                intent1 = new Intent(getActivity(), GongXiaoActivity.class);
-                intent1.putExtra("flag", 1);
-                startActivity(intent1);
-                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+            case R.id.classify_two_shuhuan://第二个功能控件-"舒缓修护"
+                getTwoIntent();
                 break;
-            case R.id.classify_two_kongyou://第二个功能控件-控油
-                intent1 = new Intent(getActivity(), GongXiaoActivity.class);
-                intent1.putExtra("flag", 2);
-                startActivity(intent1);
-                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+            case R.id.classify_two_kongyou://第二个功能控件-"控油去痘"
+                getTwoIntent();
                 break;
-            case R.id.classify_two_meibai://第二个功能控件-美白
-                intent1 = new Intent(getActivity(), GongXiaoActivity.class);
-                intent1.putExtra("flag", 3);
-                startActivity(intent1);
-                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+            case R.id.classify_two_meibai://第二个功能控件-"美白提亮"
+                getTwoIntent();
                 break;
-            case R.id.classify_two_jinzhi://第二个功能控件-紧致
-                intent1 = new Intent(getActivity(), GongXiaoActivity.class);
-                intent1.putExtra("flag", 4);
-                startActivity(intent1);
-                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+            case R.id.classify_two_jinzhi://第二个功能控件-"紧致抗皱"
+                getTwoIntent();
                 break;
             case R.id.classify_fu_hun://第3个功能控件-按肤质_混合
-
+                getThreeIntent();
                 break;
             case R.id.classify_fu_zhong://第3个功能控件-按肤质_中性
 
@@ -263,37 +251,54 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
 
         }
     }
+    //    封装一个第三个模块获取新的URL的方法
+    private void getThreeIntent() {
+        
+    }
+
+    //    封装一个第一个模块获取新的URL的方法
+    public void getOneIntent(String gong, int i) {
+        if (category != null) {
+            //获取url地址
+            String newUrl = getDataType(category, "按属性", gong);
+            //跳转到展示页面
+            Intent intent2 = new Intent(getActivity(), ClassifyItem.class);
+            intent2.putExtra("fen", i);
+            intent2.putExtra("url", newUrl);
+            startActivity(intent2);
+            getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+        }
+    }
+
+    //    封装一个第二个模块获取新的URL的方法
+    public void getTwoIntent() {
+        if (category != null) {
+            ArrayList<String> list = new ArrayList<>();
+
+            String buUrl = getDataType(category, "按功效", "补水保湿");
+            String shuUrl = getDataType(category, "按功效", "舒缓修护");
+            String kongUrl = getDataType(category, "按功效", "控油去痘");
+            String meiUrl = getDataType(category, "按功效", "美白提亮");
+            String jinUrl = getDataType(category, "按功效", "紧致抗皱");
+            list.add(buUrl);
+            list.add(shuUrl);
+            list.add(kongUrl);
+            list.add(meiUrl);
+            list.add(jinUrl);
+
+            //获取url地址
+//            String newUrl = getDataType(category, "按功效", gong);
+            //跳转到展示页面
+            Intent intent2 = new Intent(getActivity(), GongXiaoActivity.class);
+            intent2.putStringArrayListExtra("newUrl", list);
+            startActivity(intent2);
+            getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+        }
+    }
 
     @Override
     public void succes(String str) {
-//        if(flag=false){
         getSuccess(flag, str);
-//        Gson gson = new Gson();
-//            ClassifyBean bean = gson.fromJson(str, ClassifyBean.class);
-////        获取数据
-//            ClassifyData data = bean.getData();
-//            ArrayList<Category> category = data.getCategory();//属性集合
-//            Message msg = new Message();
-//            msg.what = 1;
-//            msg.obj = category;
-//            handle.sendMessage(msg);
-//            ArrayList<GoodsBrief> goodsBrief = data.getGoodsBrief();//明星产品
-//            Message msg1 = new Message();
-//            msg1.what = 2;
-//            msg1.obj = goodsBrief;
-//            handle.sendMessage(msg1);
-//        }
-//        else if(flag=true){
-//            Gson gson = new Gson();
-//            XinXiData xiData = gson.fromJson(str, XinXiData.class);
-//            ArrayList<GoodBrief> data = xiData.getData();
-//            Message msg3 = new Message();
-//            msg3.what = 3;
-//            msg3.obj = data;
-//            handle.sendMessage(msg3);
-//
-//        }
-
 
     }
 
@@ -301,20 +306,20 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
 
 
 //
-            Gson gson = new Gson();
-            ClassifyBean bean = gson.fromJson(str, ClassifyBean.class);
+        Gson gson = new Gson();
+        ClassifyBean bean = gson.fromJson(str, ClassifyBean.class);
 //        获取数据
-            ClassifyData data = bean.getData();
-            ArrayList<Category> category = data.getCategory();//属性集合
-            Message msg = new Message();
-            msg.what = 1;
-            msg.obj = category;
-            handle.sendMessage(msg);
-            ArrayList<GoodsBrief> goodsBrief = data.getGoodsBrief();//明星产品
-            Message msg1 = new Message();
-            msg1.what = 2;
-            msg1.obj = goodsBrief;
-            handle.sendMessage(msg1);
+        ClassifyData data = bean.getData();
+        ArrayList<Category> category = data.getCategory();//属性集合
+        Message msg = new Message();
+        msg.what = 1;
+        msg.obj = category;
+        handle.sendMessage(msg);
+        ArrayList<GoodsBrief> goodsBrief = data.getGoodsBrief();//明星产品
+        Message msg1 = new Message();
+        msg1.what = 2;
+        msg1.obj = goodsBrief;
+        handle.sendMessage(msg1);
 
     }
 
