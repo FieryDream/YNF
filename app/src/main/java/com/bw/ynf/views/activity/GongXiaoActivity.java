@@ -17,6 +17,7 @@ import com.bw.ynf.bean.homebean.classify.GoodBrief;
 import com.bw.ynf.bean.homebean.classify.XinXiData;
 import com.bw.ynf.interfaces.HomeFragmentData;
 import com.bw.ynf.presenter.HomeFragmentPresenter;
+import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.adapter.classifyadapters.MyMianMoAdapter;
 import com.bw.ynf.views.fragment.MianMoFrogment;
 import com.google.gson.Gson;
@@ -62,7 +63,8 @@ public class GongXiaoActivity extends FragmentActivity implements View.OnClickLi
         initView();
 //        请求网络
         for (int i = 0; i <urllist.size() ; i++) {
-        getDataFromNet(urllist.get(i));
+            String id = urllist.get(i);
+            getDataFromNet(UrlUtils.SORT_URL_item +id);
 
         }
 

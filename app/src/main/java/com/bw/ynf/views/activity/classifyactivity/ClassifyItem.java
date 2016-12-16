@@ -16,6 +16,7 @@ import com.bw.ynf.bean.homebean.classify.GoodsBrief;
 import com.bw.ynf.bean.homebean.classify.XinXiData;
 import com.bw.ynf.interfaces.HomeFragmentData;
 import com.bw.ynf.presenter.HomeFragmentPresenter;
+import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.adapter.classifyadapters.RunFuShuiAdapter;
 import com.google.gson.Gson;
 
@@ -89,7 +90,7 @@ public class ClassifyItem extends AppCompatActivity implements View.OnClickListe
                 break;
 
         }
-        return url ;
+        return UrlUtils.SORT_URL_item +url ;
 
     }
 //修改标题
@@ -97,8 +98,6 @@ public class ClassifyItem extends AppCompatActivity implements View.OnClickListe
     private void initView() {
         back = (ImageView) findViewById(R.id.classify_biaoti_back);
         biaoti = (TextView) findViewById(R.id.classify_biaoti_tv);
-
-
 
         gridView = (GridView) findViewById(R.id.classify_biaoti_gridview);
         back.setOnClickListener(this);

@@ -46,7 +46,8 @@
         <activity android:name=".views.activity.ReMenActivity"/>
         <activity android:name=".views.activity.HomeWebViewActivity"/>
         <activity android:name=".views.activity.XiangQingActivity"/>
-        <activity android:name=".views.activity.classifyactivity.FuZhiActivity">
+        <activity android:name=".views.activity.classifyactivity.FuZhiActivity"
+                  android:theme="@style/Theme.PageIndicatorDefaults">
         </activity>
     </application>
 

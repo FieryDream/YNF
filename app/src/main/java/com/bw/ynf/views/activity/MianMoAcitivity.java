@@ -1,6 +1,7 @@
 package com.bw.ynf.views.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -18,8 +19,13 @@ import com.bw.ynf.bean.homebean.classify.GoodBrief;
 import com.bw.ynf.bean.homebean.classify.XinXiData;
 import com.bw.ynf.interfaces.HomeFragmentData;
 import com.bw.ynf.presenter.HomeFragmentPresenter;
+import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.adapter.classifyadapters.MyMianMoAdapter;
 import com.bw.ynf.views.fragment.MianMoFrogment;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -49,6 +55,8 @@ public class MianMoAcitivity extends FragmentActivity implements View.OnClickLis
         }
     };
 
+    private GoogleApiClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,13 +68,17 @@ public class MianMoAcitivity extends FragmentActivity implements View.OnClickLis
 //        获取url集合
         listUrl = getData();
         //        请求网络
-        for (int i = 0; i <listUrl.size() ; i++) {
+        for (int i = 0; i < listUrl.size(); i++) {
+            String id = listUrl.get(i);
 
-        getDatanNet(listUrl.get(i));
+            String url = UrlUtils.SORT_URL_item + id;
+            getDatanNet(url);
         }
 
 //        默认显示第一页
         viewPage.setCurrentItem(0);
+
+
     }
 
     private ArrayList<MianMoFrogment> getFragment(ArrayList<ArrayList<GoodBrief>> arra) {
@@ -89,6 +101,7 @@ public class MianMoAcitivity extends FragmentActivity implements View.OnClickLis
     private ArrayList<String> getData() {
 
         Intent intent = getIntent();
+//        获取id的集合
         ArrayList<String> newUrl = intent.getStringArrayListExtra("newUrl");
 
         return newUrl;

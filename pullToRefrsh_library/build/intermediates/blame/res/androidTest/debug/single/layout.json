@@ -4,15 +4,7 @@
         "source": "D:\\GitApp\\YuNiFang\\pullToRefrsh_library\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_vertical.xml"
     },
     {
-        "merged": "F:\\AndroidStudioProject\\gitApp\\YuNiFang\\pullToRefrsh_library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_vertical.xml",
-        "source": "F:\\AndroidStudioProject\\gitApp\\YuNiFang\\pullToRefrsh_library\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_vertical.xml"
-    },
-    {
         "merged": "D:\\GitApp\\YuNiFang\\pullToRefrsh_library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
         "source": "D:\\GitApp\\YuNiFang\\pullToRefrsh_library\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
-    },
-    {
-        "merged": "F:\\AndroidStudioProject\\gitApp\\YuNiFang\\pullToRefrsh_library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
-        "source": "F:\\AndroidStudioProject\\gitApp\\YuNiFang\\pullToRefrsh_library\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
     }
 ]

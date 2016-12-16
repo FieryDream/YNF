@@ -29,6 +29,7 @@ import com.bw.ynf.presenter.HomeFragmentPresenter;
 import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.activity.GongXiaoActivity;
 import com.bw.ynf.views.activity.MianMoAcitivity;
+import com.bw.ynf.views.activity.XiangQingActivity;
 import com.bw.ynf.views.activity.classifyactivity.ClassifyItem;
 import com.bw.ynf.views.activity.classifyactivity.FuZhiActivity;
 import com.bw.ynf.views.adapter.classifyadapters.MyMingXingAdapter;
@@ -122,7 +123,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
                 }
             }
         }
-        return UrlUtils.SORT_URL_item + id;//新的，拼接新的url地址
+        return  id;//拼接新的url地址的id
     }
 
     //        加载数剧
@@ -249,7 +250,11 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
 
                 break;
 
-
+//            Intent ent=new Intent(getActivity(), XiangQingActivity.class);
+//            String id = homeBean.getData().getDefaultGoodsList().get(n).getId();
+//            String url = UrlUtils.GOODS_URL + id;
+//            ent.putExtra("url",url);
+//            startActivity(ent);
         }
     }
     //    封装一个第三个模块获取新的URL的方法
@@ -270,6 +275,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
             list.add(youUrl);
             list.add(douUrl);
             list.add(minUrl);
+
 
             //获取url地址
 //            String newUrl = getDataType(category, "按功效", gong);
