@@ -60,6 +60,7 @@ public class RecyclerIntoRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
 
         }
 
+        //条目的点击事件，进行接口回调，将点击的position回调到外层的Adapter
         if (intOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,6 +90,7 @@ public class RecyclerIntoRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
 
         public ViewHolder(View itemView) {
             super(itemView);
+            //找到控件
             bigImage = (ImageView) itemView.findViewById(R.id.into_recycler_bigImage);
             simImage = (ImageView) itemView.findViewById(R.id.into_recycler_simImage);
             moerImage = (ImageView) itemView.findViewById(R.id.into_recycler_moreImage);
@@ -99,10 +101,12 @@ public class RecyclerIntoRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
         }
     }
 
+    //回调接口，外层的Adapter实现该接口，得到回调的数据
     public interface IntOnItemClickListener {
         void onClick(int position);
     }
 
+    //点击事件的方法
     public void setIntOnItemClickListener(IntOnItemClickListener intOnItemClickListener) {
         this.intOnItemClickListener = intOnItemClickListener;
     }

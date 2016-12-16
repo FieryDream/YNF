@@ -1,13 +1,322 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_xiang_qing"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.bw.ynf.views.activity.XiangQingActivity">
+    android:background="@color/common_action_bar_splitter"
+    android:orientation="vertical">
+    <!--返回箭头，商品详情等页面标题栏布局-->
+    <RelativeLayout
+        android:id="@+id/webView_biaotilan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:padding="5dp">
+        <!--返回箭头-->
+        <ImageView
+            android:id="@+id/xiangqing_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/back_befor" />
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="商品详情"
+            android:textColor="#323232"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/xiangqing_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/share_slelect" />
+
+        <ImageView
+            android:id="@+id/xiangqing_to_gouwuche"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_toLeftOf="@id/xiangqing_share"
+            android:src="@mipmap/goods_shopping_cart" />
+    </RelativeLayout>
+    <!--ScrollView-->
+    <com.bw.ynf.views.customClass.MyScrollView
+        android:id="@+id/xiangqing_ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+        <!--ScrollView的唯一子布局：线性布局，方向垂直-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+<!--包裹着ViewPager和小圆点-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--ViewPager用来展示产品图片-->
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/xiangqing_ViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:background="@color/colorWhite">
+                </android.support.v4.view.ViewPager>
+                <LinearLayout
+                    android:id="@+id/xiangqing_yuandian_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal"></LinearLayout>
+
+            </RelativeLayout>
+
+            <!--相对布局，用来包括产品名称，价格，收藏等,方向横向，按内部布局按比例等分、6:1-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite">
+                <!--线性布局，用来包括产品名称，现价，原价，优惠卷，折扣卷等，方向垂直-->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:orientation="vertical">
+                    <!--产品名称-->
+                    <TextView
+                        android:id="@+id/xiangqing_tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="男士深海水动力洁面乳"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:textSize="15sp" />
+                    <!--线性布局，用来包括现价，原价，优惠卷，折扣卷等，方向横向-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <!--现价-->
+                        <TextView
+                            android:id="@+id/xiangqing_tv_xianjia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:text="￥ 39.90"
+                            android:textColor="@color/colorAccent" />
+
+                        <TextView
+                            android:id="@+id/xiangqing_tv_yuanjia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="￥ 59.00" />
+
+                        <ImageView
+                            android:id="@+id/xiangqing_iv_youhui"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@mipmap/coupons" />
+
+                        <ImageView
+                            android:id="@+id/xiangqing_iv_zhekou"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@mipmap/pledge" />
+                    </LinearLayout>
+                </LinearLayout>
+                <!--线性布局，方向垂直，包裹收藏图片和文字-->
+                <LinearLayout
+                    android:id="@+id/xiangqing_linear_shoucang"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/xiangqing_iv_shoucang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shoucang_select" />
+
+                    <TextView
+                        android:id="@+id/xiangqing_tv_shoucang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收藏" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="运费" />
+
+                <TextView
+                    android:id="@+id/xiangqing_tv_youfei"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:text="包邮"
+                    android:textColor="@color/colorAccent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"></View>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="销量" />
+
+                <TextView
+                    android:id="@+id/xiangqing_tv_xiaoliang"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4587"
+                    android:textColor="@color/colorAccent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"></View>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="收藏" />
+
+                <TextView
+                    android:id="@+id/xiangqing_tv_scCount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="351"
+                    android:textColor="@color/colorAccent" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/backColor"></View>
+
+            <TextView
+                android:id="@+id/xiangqing_tv_zengpin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:drawableRight="@mipmap/next_icon"
+                android:padding="10dp"
+                android:text="海量赠品任性选·满69选2件" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/backColor"></View>
+
+            <TextView
+                android:id="@+id/xiangqing_tv_yaoqing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:drawableRight="@mipmap/next_icon"
+                android:padding="10dp"
+                android:text="邀请有礼·270元面膜免费领" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/backColor"></View>
+
+            <TextView
+                android:id="@+id/xiangqing_tv_xuzhi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:drawableRight="@mipmap/next_icon"
+                android:padding="10dp"
+                android:text="购物须知·客服时间8:30-23:30" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/backColor"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/xiangqing_tv_xq"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="产品详情"
+                    android:textColor="@color/colorAccent" />
+
+                <TextView
+                    android:id="@+id/xiangqing_tv_canshu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="产品参数" />
+
+                <TextView
+                    android:id="@+id/xiangqing_tv_pinglun"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="评论(1545)" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/xiangqing_frameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite">
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </com.bw.ynf.views.customClass.MyScrollView>
+
+</LinearLayout>

@@ -1,16 +1,17 @@
 package com.bw.ynf.views.fragment;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,11 +22,13 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.ynf.R;
 import com.bw.ynf.bean.homebean.HomeBean;
 import com.bw.ynf.bean.homebean.HotZhuanTi;
+import com.bw.ynf.bean.homebean.ViewPagerData;
 import com.bw.ynf.bean.homebean.YouHui;
 import com.bw.ynf.interfaces.HomeFragmentData;
 import com.bw.ynf.presenter.HomeFragmentPresenter;
@@ -35,6 +38,8 @@ import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.activity.HomeWebViewActivity;
 import com.bw.ynf.views.activity.LoGinActivity;
 import com.bw.ynf.views.activity.ReMenActivity;
+import com.bw.ynf.views.activity.XiangQingActivity;
+import com.bw.ynf.views.adapter.homeadapters.BottomRecyclerAdapter;
 import com.bw.ynf.views.adapter.homeadapters.HomeFragmentGridViewAdapter;
 import com.bw.ynf.views.adapter.homeadapters.HomeViewPagerAdaptrer;
 import com.bw.ynf.views.adapter.homeadapters.MyRecyclerAdapter;
@@ -76,6 +81,8 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
     private RelativeLayout notNet;
     private boolean state;
     private Intent intent;
+    private RecyclerView recycler;
+    private TextView lookAll;
 
 
     @Nullable
@@ -132,7 +139,6 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
                         //跳转页面
                         skipActivity(i);
                     }else{
-                        Toast.makeText(getActivity(),"登录",Toast.LENGTH_SHORT).show();
                         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                         dialog.setTitle("                        登录");
                         dialog.setMessage("此功能仅限手机号登陆用户使用,请先登录");
@@ -159,6 +165,7 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
 
             }
         });
+
 
         }
 
@@ -307,6 +314,11 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
         rlv = (RecyclerView) view.findViewById(R.id.home_fragment_recycler_listView);
         //断网显示的布局（父类，包裹着断网显示的所有控件）
         notNet = (RelativeLayout) view.findViewById(R.id.not_net_show);
+        //最下方的RecyclerView，显示成GridView展示数据
+        recycler = (RecyclerView) view.findViewById(R.id.home_fragment_recycler_GridView);
+        //查看所有商品
+        lookAll = (TextView) view.findViewById(R.id.tv_look_all);
+
 
 
     }
@@ -315,8 +327,12 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
     public void succes(String str) {
         //解析Json串，得到对象数据
         homeBean = gson.fromJson(str, HomeBean.class);
-        //调用presenter中调用方法，获得ViewPager数据和小圆点数据
-        homeFragmentPresenter.initData(listViewPager, listYuanDian, homeBean, layout);
+        /**
+         *  调用presenter中调用方法，获得ViewPager数据和小圆点数据，
+         *  接下来在initData方法中把图片装进listViewPager集合后，在下面设置进ViewPager的适配器
+         */
+        ArrayList<ViewPagerData> ad1 = homeBean.getData().getAd1();
+        homeFragmentPresenter.initData(listViewPager, listYuanDian, ad1, layout);
         //设置ViewPager适配器
         setViewPagerAdapter();
         //设置GridView适配器
@@ -325,6 +341,37 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
         setYouHuiViewPager();
         //设置RecyclerView适配器
         setRecyclerViewAdapter();
+        //设置最下方RecyclerView适配器
+        setDownRecyclerAdapter();
+
+    }
+
+//    设置最下方RecyclerView适配器的方法
+    private void setDownRecyclerAdapter() {
+        //设置布局管理器
+        recycler.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        //设置间隔
+        recycler.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                outRect.set(10,10,10,10);
+            }
+        });
+        //设置适配器
+        BottomRecyclerAdapter adapter = new BottomRecyclerAdapter(getActivity(), homeBean.getData().getDefaultGoodsList());
+        recycler.setAdapter(adapter);
+        //最下方RecyClerView的点击事件
+        adapter.setBottomItemClickListener(new BottomRecyclerAdapter.BottomItemClickListener() {
+            @Override
+            public void bottomOnClick(int n) {
+                Intent ent=new Intent(getActivity(), XiangQingActivity.class);
+                String id = homeBean.getData().getDefaultGoodsList().get(n).getId();
+                String url = UrlUtils.GOODS_URL + id;
+                ent.putExtra("url",url);
+                startActivity(ent);
+            }
+        });
 
     }
 

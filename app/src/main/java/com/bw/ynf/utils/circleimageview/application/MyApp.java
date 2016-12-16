@@ -24,7 +24,6 @@ public class MyApp extends Application {
     private static Handler handler;
     private static int mainThreadId;
 
-
     private void initShaRed() {
         /**
          * 存放是否登陆信息
@@ -39,7 +38,8 @@ public class MyApp extends Application {
          * 例子：edit.putString("phone",phone);
          *      edit.putString("pwd",pwd);
          */
-        userSp = getSharedPreferences("userInfo", MODE_PRIVATE);
+        userSp = getSharedPreferences("userInfo", MODE_APPEND);
+
     }
     //存放是否登陆信息
     public static SharedPreferences getLoginShared(){
@@ -64,6 +64,7 @@ public class MyApp extends Application {
         init();
 
     }
+
 
     //imageloader初始化方法
     private void init() {
@@ -111,5 +112,6 @@ public class MyApp extends Application {
     public static Context getContext() {
         return context;
     }
+
 
 }
