@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bw.ynf.R;
+import com.bw.ynf.bean.homebean.classify.GoodBrief;
 import com.bw.ynf.bean.homebean.classify.GoodsBrief;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class MyMingXingAdapter extends BaseAdapter {
         this.activity = activity;
         this.data = data;
     }
+
+
 
     @Override
     public int getCount() {

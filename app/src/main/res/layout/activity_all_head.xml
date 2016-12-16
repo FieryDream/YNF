@@ -28,4 +28,8 @@
             android:textColor="#323232"
             android:textSize="20sp"/>
     </RelativeLayout>
+    <!--间隔线-->
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/backColor"/>
 </LinearLayout>
