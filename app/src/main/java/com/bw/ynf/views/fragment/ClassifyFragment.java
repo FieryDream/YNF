@@ -30,6 +30,7 @@ import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.activity.GongXiaoActivity;
 import com.bw.ynf.views.activity.MianMoAcitivity;
 import com.bw.ynf.views.activity.classifyactivity.ClassifyItem;
+import com.bw.ynf.views.activity.classifyactivity.FuZhiActivity;
 import com.bw.ynf.views.adapter.classifyadapters.MyMingXingAdapter;
 import com.google.gson.Gson;
 
@@ -253,7 +254,31 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
     }
     //    封装一个第三个模块获取新的URL的方法
     private void getThreeIntent() {
-        
+        if (category != null) {
+            ArrayList<String> list = new ArrayList<>();
+
+            String hunUrl = getDataType(category, "按肤质", "混合性肤质");
+            String zhongUrl = getDataType(category, "按肤质", "中性肤质");
+            String ganUrl = getDataType(category, "按肤质", "干性肤质");
+            String youUrl = getDataType(category, "按肤质", "油性肤质");
+            String douUrl = getDataType(category, "按肤质", "痘痘肤质");
+            String minUrl = getDataType(category, "按肤质", "敏感肤质");
+
+            list.add(hunUrl);
+            list.add(zhongUrl);
+            list.add(ganUrl);
+            list.add(youUrl);
+            list.add(douUrl);
+            list.add(minUrl);
+
+            //获取url地址
+//            String newUrl = getDataType(category, "按功效", gong);
+            //跳转到展示页面
+            Intent intent2 = new Intent(getActivity(), FuZhiActivity.class);
+            intent2.putStringArrayListExtra("newUrl", list);
+            startActivity(intent2);
+            getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
+        }
     }
 
     //    封装一个第一个模块获取新的URL的方法

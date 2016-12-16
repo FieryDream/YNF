@@ -8,9 +8,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
     <com.bw.ynf.views.customClass.MyGridView
+
         android:id="@+id/miaomo_san_gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:numColumns="2"
         android:padding="8dp"
         android:paddingTop="18dp">
