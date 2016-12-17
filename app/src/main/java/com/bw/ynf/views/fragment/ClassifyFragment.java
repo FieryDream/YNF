@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +30,7 @@ import com.bw.ynf.presenter.HomeFragmentPresenter;
 import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.activity.GongXiaoActivity;
 import com.bw.ynf.views.activity.MianMoAcitivity;
+import com.bw.ynf.views.activity.XiangQingActivity;
 import com.bw.ynf.views.activity.classifyactivity.ClassifyItem;
 import com.bw.ynf.views.activity.classifyactivity.FuZhiActivity;
 import com.bw.ynf.views.adapter.classifyadapters.MyMingXingAdapter;
@@ -62,6 +64,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
     public boolean flag = false;
     private ArrayList<Category> category;
     private ArrayList<GoodBrief> data2;
+    ArrayList<GoodsBrief> data;
     private Handler handle = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -71,7 +74,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
 
                     break;
                 case 2:
-                    ArrayList<GoodsBrief> data = (ArrayList<GoodsBrief>) msg.obj;
+                    data = (ArrayList<GoodsBrief>) msg.obj;
                     //        展示明星产品
                     mingxingGridView.setAdapter(new MyMingXingAdapter(getActivity(), data));
                     mingxingGridView.setHorizontalSpacing(10);
@@ -100,7 +103,19 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
         initView();
 //        加载分类页面数剧
         initData(UrlUtils.SORT_URL);
-
+//        gridView的点击事件
+        mingxingGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent ent = new Intent(getActivity(), XiangQingActivity.class);
+                String id = data.get(i).getId();
+//                    getData().getDefaultGoodsList().get(n).getId();
+                String url = UrlUtils.GOODS_URL + id;
+                ent.putExtra("url", url);
+                startActivity(ent);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);
+            }
+        });
     }
 
     //获取集合类型数据
@@ -122,7 +137,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
                 }
             }
         }
-        return UrlUtils.SORT_URL_item + id;//新的，拼接新的url地址
+        return  UrlUtils.SORT_URL_item +id;//拼接新的url地址
     }
 
     //        加载数剧
@@ -216,44 +231,48 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
                 getOneIntent("实惠套餐", 5);
                 break;
             case R.id.classify_two_bushui://第二个功能控件-"补水保湿"
-                getTwoIntent();
+                getTwoIntent(1);
                 break;
             case R.id.classify_two_shuhuan://第二个功能控件-"舒缓修护"
-                getTwoIntent();
+                getTwoIntent(2);
                 break;
             case R.id.classify_two_kongyou://第二个功能控件-"控油去痘"
-                getTwoIntent();
+                getTwoIntent(3);
                 break;
             case R.id.classify_two_meibai://第二个功能控件-"美白提亮"
-                getTwoIntent();
+                getTwoIntent(4);
                 break;
             case R.id.classify_two_jinzhi://第二个功能控件-"紧致抗皱"
-                getTwoIntent();
+                getTwoIntent(5);
                 break;
             case R.id.classify_fu_hun://第3个功能控件-按肤质_混合
-                getThreeIntent();
+                getThreeIntent(1);
                 break;
             case R.id.classify_fu_zhong://第3个功能控件-按肤质_中性
-
+                getThreeIntent(2);
                 break;
             case R.id.classify_fu_gan://第3个功能控件-按肤质_干性
-
+                getThreeIntent(3);
                 break;
             case R.id.classify_fu_you://第3个功能控件-按肤质_油性
-
+                getThreeIntent(4);
                 break;
             case R.id.classify_fu_dou://第3个功能控件-按肤质_痘痘
-
+                getThreeIntent(5);
                 break;
             case R.id.classify_fu_min://第3个功能控件-按肤质_敏感
-
+                getThreeIntent(6);
                 break;
 
-
+//            Intent ent=new Intent(getActivity(), XiangQingActivity.class);
+//            String id = homeBean.getData().getDefaultGoodsList().get(n).getId();
+//            String url = UrlUtils.GOODS_URL + id;
+//            ent.putExtra("url",url);
+//            startActivity(ent);
         }
     }
     //    封装一个第三个模块获取新的URL的方法
-    private void getThreeIntent() {
+    private void getThreeIntent(int i) {
         if (category != null) {
             ArrayList<String> list = new ArrayList<>();
 
@@ -271,11 +290,13 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
             list.add(douUrl);
             list.add(minUrl);
 
+
             //获取url地址
 //            String newUrl = getDataType(category, "按功效", gong);
             //跳转到展示页面
             Intent intent2 = new Intent(getActivity(), FuZhiActivity.class);
             intent2.putStringArrayListExtra("newUrl", list);
+            intent2.putExtra("key",i);
             startActivity(intent2);
             getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
         }
@@ -296,7 +317,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
     }
 
     //    封装一个第二个模块获取新的URL的方法
-    public void getTwoIntent() {
+    public void getTwoIntent(int i) {
         if (category != null) {
             ArrayList<String> list = new ArrayList<>();
 
@@ -316,6 +337,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener, 
             //跳转到展示页面
             Intent intent2 = new Intent(getActivity(), GongXiaoActivity.class);
             intent2.putStringArrayListExtra("newUrl", list);
+            intent2.putExtra("key",i);
             startActivity(intent2);
             getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.login_back_enter);
         }

@@ -71,7 +71,7 @@
                     android:id="@+id/classify_one_shihui"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="4dp"
+                    android:paddingTop="8dp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/classify_kit"/>
             </LinearLayout>

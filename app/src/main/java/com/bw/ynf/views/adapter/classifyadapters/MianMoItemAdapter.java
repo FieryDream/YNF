@@ -27,14 +27,12 @@ public class MianMoItemAdapter extends BaseAdapter {
     private ArrayList<GoodBrief> data;
 
     public MianMoItemAdapter(FragmentActivity activity, ArrayList<GoodBrief> data) {
-        Log.e("Adapter-data|----->",""+data);
         this.activity = activity;
         this.data = data;
     }
 
     @Override
     public int getCount() {
-        Log.e("getCount||||||||----->",""+data.size());
         return data.size();
     }
 

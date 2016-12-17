@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,12 +17,15 @@ import com.bw.ynf.bean.homebean.classify.GoodsBrief;
 import com.bw.ynf.bean.homebean.classify.XinXiData;
 import com.bw.ynf.interfaces.HomeFragmentData;
 import com.bw.ynf.presenter.HomeFragmentPresenter;
+import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
+import com.bw.ynf.views.activity.XiangQingActivity;
 import com.bw.ynf.views.adapter.classifyadapters.RunFuShuiAdapter;
 import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import static android.R.attr.data;
 import static android.R.attr.handle;
 
 public class ClassifyItem extends AppCompatActivity implements View.OnClickListener,HomeFragmentData {
@@ -29,11 +33,11 @@ public class ClassifyItem extends AppCompatActivity implements View.OnClickListe
     private ImageView back;
     private TextView biaoti;
     private GridView gridView;
-
+    ArrayList<GoodBrief> data;
      Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            ArrayList<GoodBrief> data= (ArrayList<GoodBrief>) msg.obj;
+            data = (ArrayList<GoodBrief>) msg.obj;
             //        设置适配器
             if (data != null) {
                 gridView.setAdapter(new RunFuShuiAdapter(ClassifyItem.this, data));
@@ -52,6 +56,19 @@ public class ClassifyItem extends AppCompatActivity implements View.OnClickListe
 //        请求网络
         initData(url);
 
+//        gridView的点击事件
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent ent = new Intent(ClassifyItem.this, XiangQingActivity.class);
+                String id = data.get(i).getId();
+//                    getData().getDefaultGoodsList().get(n).getId();
+                String url = UrlUtils.GOODS_URL + id;
+                ent.putExtra("url", url);
+                startActivity(ent);
+                overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);
+            }
+        });
 
     }
     //        加载数剧
@@ -95,10 +112,8 @@ public class ClassifyItem extends AppCompatActivity implements View.OnClickListe
 //修改标题
 
     private void initView() {
-        back = (ImageView) findViewById(R.id.classify_biaoti_back);
-        biaoti = (TextView) findViewById(R.id.classify_biaoti_tv);
-
-
+        back = (ImageView) findViewById(R.id.fuzhi_biaoti_back);
+        biaoti = (TextView) findViewById(R.id.fuzhi_biaoti_tv);
 
         gridView = (GridView) findViewById(R.id.classify_biaoti_gridview);
         back.setOnClickListener(this);
@@ -108,12 +123,9 @@ public class ClassifyItem extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.classify_biaoti_back://返回
+            case R.id.fuzhi_biaoti_back://返回
                 finish();
                 break;
-//            case R.id.classify_biaoti_gridview://GridView
-//
-//                break;
         }
     }
 

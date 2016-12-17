@@ -361,7 +361,7 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
         //设置适配器
         BottomRecyclerAdapter adapter = new BottomRecyclerAdapter(getActivity(), homeBean.getData().getDefaultGoodsList());
         recycler.setAdapter(adapter);
-        //最下方RecyClerView的点击事件
+        //最下方RecyClerView的点击事件(跳转到详情界面)
         adapter.setBottomItemClickListener(new BottomRecyclerAdapter.BottomItemClickListener() {
             @Override
             public void bottomOnClick(int n) {

@@ -15,6 +15,17 @@ public class GoodsBrief implements Serializable{
     private String goods_name;//介绍
     private double shop_price;//现价
     private double market_price;//原价
+    private String id;
+
+    public GoodsBrief(String goods_img, String watermarkUrl, String efficacy, String goods_name, double shop_price, double market_price, String id) {
+        this.goods_img = goods_img;
+        this.watermarkUrl = watermarkUrl;
+        this.efficacy = efficacy;
+        this.goods_name = goods_name;
+        this.shop_price = shop_price;
+        this.market_price = market_price;
+        this.id = id;
+    }
 
     public String getGoods_img() {
         return goods_img;
@@ -52,7 +63,7 @@ public class GoodsBrief implements Serializable{
         return shop_price;
     }
 
-    public void setShop_price(float shop_price) {
+    public void setShop_price(double shop_price) {
         this.shop_price = shop_price;
     }
 
@@ -60,8 +71,16 @@ public class GoodsBrief implements Serializable{
         return market_price;
     }
 
-    public void setMarket_price(int market_price) {
+    public void setMarket_price(double market_price) {
         this.market_price = market_price;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
@@ -73,16 +92,8 @@ public class GoodsBrief implements Serializable{
                 ", goods_name='" + goods_name + '\'' +
                 ", shop_price=" + shop_price +
                 ", market_price=" + market_price +
+                ", id='" + id + '\'' +
                 '}';
-    }
-
-    public GoodsBrief(String goods_img, String watermarkUrl, String efficacy, String goods_name, float shop_price, int market_price) {
-        this.goods_img = goods_img;
-        this.watermarkUrl = watermarkUrl;
-        this.efficacy = efficacy;
-        this.goods_name = goods_name;
-        this.shop_price = shop_price;
-        this.market_price = market_price;
     }
 
     public GoodsBrief() {

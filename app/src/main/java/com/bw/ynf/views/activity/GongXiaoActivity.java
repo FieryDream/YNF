@@ -17,11 +17,14 @@ import com.bw.ynf.bean.homebean.classify.GoodBrief;
 import com.bw.ynf.bean.homebean.classify.XinXiData;
 import com.bw.ynf.interfaces.HomeFragmentData;
 import com.bw.ynf.presenter.HomeFragmentPresenter;
+import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.adapter.classifyadapters.MyMianMoAdapter;
 import com.bw.ynf.views.fragment.MianMoFrogment;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+
+import static android.R.attr.key;
 
 public class GongXiaoActivity extends FragmentActivity implements View.OnClickListener,HomeFragmentData{
 
@@ -34,6 +37,7 @@ public class GongXiaoActivity extends FragmentActivity implements View.OnClickLi
     private ViewPager viewpage;
     private ArrayList<TextView> textViews;
     private ArrayList<String> urllist;
+    int key;
     private Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -41,7 +45,6 @@ public class GongXiaoActivity extends FragmentActivity implements View.OnClickLi
             ArrayList<ArrayList<GoodBrief>> arrayLists= (ArrayList<ArrayList<GoodBrief>>) msg.obj;
             if(arrayLists.size() == 5){
                 ArrayList<MianMoFrogment> fragmentNum = getFragmentNum(arrayLists);
-                Log.e("fragmentNum个数------》",""+fragmentNum.size());
 //        设置适配器
                 viewpage.setAdapter(new MyMianMoAdapter(getSupportFragmentManager(),fragmentNum));
             }
@@ -58,17 +61,19 @@ public class GongXiaoActivity extends FragmentActivity implements View.OnClickLi
         Intent intent = getIntent();
 //        获取urllist的集合
         urllist = intent.getStringArrayListExtra("newUrl");
+        key= intent.getIntExtra("key",-1);
+        Log.d("key------------->",""+key);
 //        初始化界面
         initView();
 //        请求网络
         for (int i = 0; i <urllist.size() ; i++) {
-        getDataFromNet(urllist.get(i));
+            String url = urllist.get(i);
+            getDataFromNet(url);
 
         }
-
-
-        viewpage.setCurrentItem(0);//设置默认显示的ViewPager页
-
+//        判断用户点击的是哪个标题
+        viewpage.setCurrentItem(key);
+        isKey(key);
 //            设置Viewpager的监听
     viewpage.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
         @Override
@@ -91,7 +96,29 @@ public class GongXiaoActivity extends FragmentActivity implements View.OnClickLi
         }
     });
     }
-//    获取fragment的方法
+    //        判断用户点击的是哪个标题
+    private void isKey(int key) {
+        switch (key){
+                    case 1:
+                        viewpage.setCurrentItem(0);
+                        break;
+                    case 2:
+                        viewpage.setCurrentItem(1);
+                        break;
+                    case 3:
+                        viewpage.setCurrentItem(2);
+                        break;
+                    case 4:
+                        viewpage.setCurrentItem(3);
+                        break;
+                    case 5:
+                        viewpage.setCurrentItem(4);
+                        break;
+
+                }
+    }
+
+    //    获取fragment的方法
     public ArrayList<MianMoFrogment> getFragmentNum(ArrayList<ArrayList<GoodBrief>> arrayLists){
         ArrayList<MianMoFrogment> fragments = new ArrayList<>();
         for (int i = 0; i < arrayLists.size(); i++) {

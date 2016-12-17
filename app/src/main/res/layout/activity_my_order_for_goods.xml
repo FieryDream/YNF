@@ -20,11 +20,28 @@
     <View android:layout_width="match_parent"
           android:layout_height="1dp"
           android:background="@color/backColor"/>
+    <!--判断有无数据-->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="center_vertical"
+                  android:id="@+id/isDingDan"
+                  android:orientation="vertical">
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:src="@mipmap/orderlist_empty"/>
+        <TextView android:layout_width="wrap_content"
+                  android:text="您没有相关订单哦..."
+                  android:layout_gravity="center"
+                  android:layout_height="wrap_content"/>
+
+    </LinearLayout>
     <!--展示区-->
     <android.support.v4.view.ViewPager
         android:id="@+id/ding_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
     </android.support.v4.view.ViewPager>
 </LinearLayout>
