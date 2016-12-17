@@ -370,6 +370,7 @@ public class HomeFragment extends Fragment implements HomeFragmentData {
                 String url = UrlUtils.GOODS_URL + id;
                 ent.putExtra("url",url);
                 startActivity(ent);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);
             }
         });
 

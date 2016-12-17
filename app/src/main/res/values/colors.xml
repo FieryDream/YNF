@@ -21,5 +21,8 @@
     <color name="ganColor">#33cc99ff</color>
     <color name="youColor">#3366cc99</color>
     <color name="minColor">#3300ffcc</color>
-
+    <color name="shihuang_false">#FDDB1F</color>
+    <color name="shihuang_true">#F8B551</color>
+    <color name="shenhong_color">#E61A5F</color>
+    <color name="popupBackGroud">#44000000</color>
 </resources>

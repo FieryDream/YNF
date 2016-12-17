@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_xiang_qing"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_action_bar_splitter"
     android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/activity_xiang_qing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_action_bar_splitter"
+        android:orientation="vertical">
     <!--返回箭头，商品详情等页面标题栏布局-->
     <RelativeLayout
         android:id="@+id/webView_biaotilan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@color/colorWhite"
         android:orientation="horizontal"
         android:padding="5dp">
@@ -52,14 +57,15 @@
     <com.bw.ynf.views.customClass.MyScrollView
         android:id="@+id/xiangqing_ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12"
         android:layout_alignParentTop="true">
         <!--ScrollView的唯一子布局：线性布局，方向垂直-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-<!--包裹着ViewPager和小圆点-->
+            <!--包裹着ViewPager和小圆点-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -68,14 +74,14 @@
                     android:id="@+id/xiangqing_ViewPager"
                     android:layout_width="match_parent"
                     android:layout_height="260dp"
-                    android:background="@color/colorWhite">
-                </android.support.v4.view.ViewPager>
+                    android:background="@color/colorWhite"></android.support.v4.view.ViewPager>
+
                 <LinearLayout
                     android:id="@+id/xiangqing_yuandian_ll"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:gravity="center_horizontal"
                     android:layout_alignParentBottom="true"
+                    android:gravity="center_horizontal"
                     android:orientation="horizontal"></LinearLayout>
 
             </RelativeLayout>
@@ -312,11 +318,75 @@
                 android:id="@+id/xiangqing_frameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="30dp"
                 android:background="@color/colorWhite">
 
             </FrameLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="没有更多了" />
+
         </LinearLayout>
     </com.bw.ynf.views.customClass.MyScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/public_contact_service_icon"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="4dp"
+            android:text="客服" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"/>
+
+        <TextView
+            android:id="@+id/xiangqing_tv_gouwuche"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/gouwu_select"
+            android:text="加入购物车"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:id="@+id/xiangqing_tv_goumai"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/goumai_select"
+            android:gravity="center"
+            android:text="立即购买"
+            android:textColor="@color/colorWhite"/>
+
+    </LinearLayout>
+
 </LinearLayout>
+    <!--弹出popupwindow时背景变暗-->
+    <View
+        android:id="@+id/xiangqing_view_night"
+        android:background="@color/popupBackGroud"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>

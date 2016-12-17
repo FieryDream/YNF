@@ -1,27 +1,20 @@
 package com.bw.ynf.views.adapter.homeadapters;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.bw.ynf.R;
 import com.bw.ynf.bean.homebean.HotZhuanTi;
 import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.activity.ReMenActivity;
 import com.bw.ynf.views.activity.XiangQingActivity;
-
 import java.util.ArrayList;
 
 /**
@@ -29,12 +22,11 @@ import java.util.ArrayList;
  */
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
-    private Context context;
+    private FragmentActivity activity;
     private ArrayList<HotZhuanTi> subjects;
     private OnItemClickListener mOnitemClickListener;
-
-    public MyRecyclerAdapter(Context context, ArrayList<HotZhuanTi> subjects) {
-        this.context=context;
+    public MyRecyclerAdapter(FragmentActivity activity, ArrayList<HotZhuanTi> subjects) {
+        this.activity = activity;
         this.subjects=subjects;
     }
 
@@ -48,11 +40,11 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     @Override
     public void onBindViewHolder(final MyRecyclerAdapter.ViewHolder holder, final int position) {
         holder.imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        Glide.with(context).load(subjects.get(position).getImage()).into(holder.imageView);
-        LinearLayoutManager manager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        Glide.with(activity).load(subjects.get(position).getImage()).into(holder.imageView);
+        LinearLayoutManager manager = new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
         holder.recyclerView.setLayoutManager(manager);
         //RecyclerView里面的RecyclerView的适配器
-        RecyclerIntoRecyclerViewAdapter adapter = new RecyclerIntoRecyclerViewAdapter(context, subjects.get(position).getGoodsList());
+        RecyclerIntoRecyclerViewAdapter adapter = new RecyclerIntoRecyclerViewAdapter(activity, subjects.get(position).getGoodsList());
         holder.recyclerView.setAdapter(adapter);
         //RecyclerView里面的RecyclerView的条目点击事件
         adapter.setIntOnItemClickListener(new RecyclerIntoRecyclerViewAdapter.IntOnItemClickListener() {
@@ -67,11 +59,12 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
                 if(pos<6){
                     String id = subjects.get(position).getGoodsList().get(pos).getId();
                     String url = UrlUtils.GOODS_URL + id;
-                    Intent in=new Intent(context, XiangQingActivity.class);
+                    Intent in=new Intent(activity, XiangQingActivity.class);
                     in.putExtra("url",url);
-                    context.startActivity(in);
+                    activity.startActivity(in);
+                    activity.overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);
                 }else {
-                    Intent intent=new Intent(context, ReMenActivity.class);
+                    Intent intent=new Intent(activity, ReMenActivity.class);
                     //实例化一个bundle对象，将要传递过去的集合数据放入bundle，
                     //注意：集合内的所有类必须实现Serializable接口
                     Bundle bundle = new Bundle();
@@ -79,7 +72,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
                     //将bundle放入intent
                     intent.putExtras(bundle);
                     intent.putExtra("position", position);
-                    context.startActivity(intent);
+                    activity.startActivity(intent);
                 }
             }
         });

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bw.ynf.R;
 import com.bw.ynf.bean.homebean.HotZhuanTi;
+import com.bw.ynf.utils.circleimageview.urlutils.UrlUtils;
 import com.bw.ynf.views.adapter.homeadapters.ZhuanTiRecyclerAdapter;
 
 import java.io.Serializable;
@@ -39,8 +40,8 @@ public class ReMenActivity extends AppCompatActivity {
         //接收到传递过来的数据，取出bundle，从bundle里将集合取出
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        int position = intent.getIntExtra("position", 0);
-        ArrayList<HotZhuanTi> subjects = (ArrayList<HotZhuanTi>) bundle.getSerializable("subjects");
+        final int position = intent.getIntExtra("position", 0);
+        final ArrayList<HotZhuanTi> subjects = (ArrayList<HotZhuanTi>) bundle.getSerializable("subjects");
         //初始化界面
         initView();
         //设置专题名字
@@ -71,8 +72,20 @@ public class ReMenActivity extends AppCompatActivity {
         //RecyclerView的条目点击事件
         adapter.setZhuTiOnItemClick(new ZhuanTiRecyclerAdapter.ZhuTiOnItemClick() {
             @Override
-            public void onItemClick(int position) {
-                Toast.makeText(ReMenActivity.this,"-->"+position,Toast.LENGTH_SHORT).show();
+            public void onItemClick(int pos) {
+                /**
+                 * 点击之后跳转到详情界面，position是每个专题的条目id，
+                 *根据这个id可以从集合里取出相应的数据，然后根据pos(pos是点击的专题的每个item的id)
+                 *根据这个pos可以取出专题相应的条目的id，然后拼接成该条目的详情url，
+                 *传递给详情界面进行数据请求和展示
+                 */
+                Intent ent=new Intent(ReMenActivity.this, XiangQingActivity.class);
+                String id = subjects.get(position).getGoodsList().get(pos).getId();
+                String url = UrlUtils.GOODS_URL + id;
+                ent.putExtra("url",url);
+                startActivity(ent);
+                overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);
+
             }
         });
 
