@@ -13,6 +13,7 @@
     <!--第三方tabpage -viewpager-->
     <com.viewpagerindicator.TabPageIndicator
         android:id="@+id/indicator"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
     />

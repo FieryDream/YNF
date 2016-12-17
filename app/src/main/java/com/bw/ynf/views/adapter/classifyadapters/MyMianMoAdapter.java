@@ -33,7 +33,6 @@ public class MyMianMoAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        LogUtils.d("MyMianMoAdapter",""+fragmentNum.size());
         return fragmentNum.size();
     }
 }

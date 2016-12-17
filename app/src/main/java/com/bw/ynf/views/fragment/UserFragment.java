@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bw.ynf.R;
+import com.bw.ynf.views.activity.LoGinActivity;
 import com.bw.ynf.views.activity.MyOrderForGoods;
 import com.bw.ynf.views.activity.SheZHiActivity;
 
@@ -107,7 +108,9 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);
                 break;
             case R.id.deng_head_login://登录
-
+                Intent intent1 = new Intent(getActivity(), LoGinActivity.class);
+                startActivity(intent1);
+                getActivity().overridePendingTransition(R.anim.huanying_enter1, R.anim.huanying_exit1);
                 break;
             case R.id.deng_head_nicheng://昵称
                 //判断登陆成功，显示昵称

@@ -7,10 +7,12 @@ package com.bw.ynf.views.activity;
  */
 
 import android.net.Uri;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bw.ynf.R;
@@ -33,6 +35,8 @@ public class MyOrderForGoods extends AppCompatActivity implements View.OnClickLi
     private TextView fahuo;
     private TextView shoukuan;
     private TextView pingjia;
+    private ViewPager viewpage;
+    private LinearLayout dingdan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,8 @@ public class MyOrderForGoods extends AppCompatActivity implements View.OnClickLi
         fahuo = (TextView) findViewById(R.id.ding_fa);
         shoukuan = (TextView) findViewById(R.id.ding_shou);
         pingjia = (TextView) findViewById(R.id.ding_ping);
+        viewpage = (ViewPager) findViewById(R.id.viewPage);
+        dingdan = (LinearLayout) findViewById(R.id.isDingDan);
         //点击事件
         back.setOnClickListener(this);
         tuikuan.setOnClickListener(this);

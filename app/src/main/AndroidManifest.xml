@@ -26,8 +26,6 @@
         <activity android:name=".views.activity.ZhuYeActivity"/>
         <activity android:name=".views.activity.LoGinActivity"/>
         <activity android:name=".views.activity.SheZHiActivity"/>
-        <activity android:name=".views.activity.ZhuYeActivity"/>
-        <activity android:name=".views.activity.LoGinActivity"/>
         <activity android:name=".views.activity.RegisterActivity"/>
         <activity android:name=".views.activity.MyOrderForGoods"/>
         <!--
@@ -41,8 +39,6 @@
         <activity android:name=".views.activity.MianMoAcitivity"/>
         <activity android:name=".views.activity.GongXiaoActivity"/>
         <activity android:name=".views.activity.classifyactivity.ClassifyItem"/>
-        <activity android:name=".views.activity.MianMoAcitivity"/>
-        <activity android:name=".views.activity.GongXiaoActivity"/>
         <activity android:name=".views.activity.ReMenActivity"/>
         <activity android:name=".views.activity.HomeWebViewActivity"/>
         <activity android:name=".views.activity.XiangQingActivity"/>

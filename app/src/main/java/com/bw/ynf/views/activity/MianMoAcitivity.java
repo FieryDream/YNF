@@ -1,6 +1,7 @@
 package com.bw.ynf.views.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -56,6 +57,7 @@ public class MianMoAcitivity extends FragmentActivity implements View.OnClickLis
     };
 
     private GoogleApiClient client;
+    private ArrayList<TextView> textlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +71,9 @@ public class MianMoAcitivity extends FragmentActivity implements View.OnClickLis
         listUrl = getData();
         //        请求网络
         for (int i = 0; i < listUrl.size(); i++) {
-            String id = listUrl.get(i);
+            String url = listUrl.get(i);
 
-            String url = UrlUtils.SORT_URL_item + id;
+//            String url = UrlUtils.SORT_URL_item + id;
             getDatanNet(url);
         }
 
@@ -79,6 +81,27 @@ public class MianMoAcitivity extends FragmentActivity implements View.OnClickLis
         viewPage.setCurrentItem(0);
 
 
+//            设置Viewpager的监听
+        viewPage.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                设置显示的字体变色
+                for (int i = 0; i <textlist.size() ; i++) {
+                    textlist.get(i).setTextColor(Color.BLACK);
+                }
+                textlist.get(position).setTextColor(Color.RED);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private ArrayList<MianMoFrogment> getFragment(ArrayList<ArrayList<GoodBrief>> arra) {
@@ -108,6 +131,7 @@ public class MianMoAcitivity extends FragmentActivity implements View.OnClickLis
     }
 
     private void initView() {
+        textlist = new ArrayList<>();
 //        返回和分享
         back = (ImageView) findViewById(R.id.mian_head_back);
         deng = (ImageView) findViewById(R.id.mian_head_deng);
@@ -118,6 +142,9 @@ public class MianMoAcitivity extends FragmentActivity implements View.OnClickLis
         mian1 = (TextView) findViewById(R.id.mian_title_1);
         mian2 = (TextView) findViewById(R.id.mian_title_2);
         mian3 = (TextView) findViewById(R.id.mian_title_3);
+        textlist.add(mian1);
+        textlist.add(mian2);
+        textlist.add(mian3);
         mian1.setOnClickListener(this);
         mian2.setOnClickListener(this);
         mian3.setOnClickListener(this);
