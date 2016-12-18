@@ -39,6 +39,7 @@ import com.bw.ynf.views.activity.HomeWebViewActivity;
 import com.bw.ynf.views.activity.LoGinActivity;
 import com.bw.ynf.views.activity.ReMenActivity;
 import com.bw.ynf.views.activity.XiangQingActivity;
+import com.bw.ynf.views.activity.ZhuYeActivity;
 import com.bw.ynf.views.adapter.homeadapters.BottomRecyclerAdapter;
 import com.bw.ynf.views.adapter.homeadapters.HomeFragmentGridViewAdapter;
 import com.bw.ynf.views.adapter.homeadapters.HomeViewPagerAdaptrer;

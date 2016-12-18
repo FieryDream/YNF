@@ -18,12 +18,14 @@ import android.text.style.StrikethroughSpan;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bw.ynf.R;
@@ -96,6 +98,7 @@ public class XiangQingActivity extends AppCompatActivity implements HomeFragment
     private PopupWindow mPopupWindow;
     private View popupView;
     private View backView;
+    private boolean popupState=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -335,6 +338,11 @@ public class XiangQingActivity extends AppCompatActivity implements HomeFragment
         TextView tvPrice = (TextView) popupView.findViewById(R.id.popup_tv_jiage);
         TextView tvKuCun = (TextView) popupView.findViewById(R.id.popup_tv_kucun);
         TextView tvXianGou = (TextView) popupView.findViewById(R.id.popup_tv_xiangou);
+        final ImageView ivJian= (ImageView) popupView.findViewById(R.id.popup_iv_jianhao);
+        final ImageView ivJia= (ImageView) popupView.findViewById(R.id.popup_iv_jiahao);
+        final TextView tvShuLiang= (TextView) popupView.findViewById(R.id.popup_tv_shuliang);
+        ImageView ivXX= (ImageView) popupView.findViewById(R.id.popup_iv_xx);
+        Button bt= (Button) popupView.findViewById(R.id.popup_bt);
         //设置图片
         Glide.with(XiangQingActivity.this)
                 .load(goods.getGallery().get(0).getNormal_url())
@@ -344,7 +352,58 @@ public class XiangQingActivity extends AppCompatActivity implements HomeFragment
         //设置库存
         tvKuCun.setText("库存" + goods.getStock_number() + "件");
         tvXianGou.setText("限购" + goods.getRestrict_purchase_num() + "件");
-        mPopupWindow = new PopupWindow(popupView, RadioGroup.LayoutParams.MATCH_PARENT, 300, true);
+        tvShuLiang.setText("1");
+        ivJian.setImageResource(R.mipmap.reduce_unable);
+        ivJia.setImageResource(R.mipmap.add_able);
+        //减号点击事件
+        ivJian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String shuliang = tvShuLiang.getText().toString();
+                int shu = Integer.valueOf(shuliang);
+                if(shu>1){
+                    shu--;
+                    tvShuLiang.setText(shu+"");
+                    ivJia.setImageResource(R.mipmap.add_able);
+                }
+                if(shu==1){
+                    ivJian.setImageResource(R.mipmap.reduce_unable);
+                }
+            }
+        });
+        //加号点击事件
+        ivJia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String shuliang = tvShuLiang.getText().toString();
+                int shu = Integer.valueOf(shuliang);
+                if(shu<goods.getRestrict_purchase_num()){
+                    shu++;
+                    tvShuLiang.setText(shu+"");
+                    ivJian.setImageResource(R.mipmap.reduce_able);
+                }
+                if(shu==goods.getRestrict_purchase_num()){
+                    ivJia.setImageResource(R.mipmap.add_unable);
+                }
+            }
+        });
+
+        //XX的点击事件，点击关闭popupwindow
+        ivXX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopupWindow.dismiss();
+            }
+        });
+        //bt的点击事件
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopupWindow.dismiss();
+                Toast.makeText(XiangQingActivity.this,"恭喜，添加购物车成功~",Toast.LENGTH_SHORT).show();
+            }
+        });
+        mPopupWindow = new PopupWindow(popupView, RadioGroup.LayoutParams.MATCH_PARENT, 520, true);
         //下面三行代码是设置点击空白区域popupwindow消失的
         mPopupWindow.setTouchable(true);
         mPopupWindow.setOutsideTouchable(true);
@@ -352,6 +411,7 @@ public class XiangQingActivity extends AppCompatActivity implements HomeFragment
         mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+                popupState=false;
                 backView.setVisibility(View.GONE);
             }
         });
@@ -449,16 +509,19 @@ public class XiangQingActivity extends AppCompatActivity implements HomeFragment
         }
 
     }
-
+//按手机的物理返回键，关闭数据库，如果是popupwindow正在打开就关闭popupwindow
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(popupState){
+            mPopupWindow.dismiss();
+            backView.setVisibility(View.GONE);
+        }
         if (database != null) {
             database.close();
         }
         finish();
         overridePendingTransition(R.anim.login_back_enter, R.anim.login_back_exit);
-        mPopupWindow.dismiss();
-        backView.setVisibility(View.GONE);
+
         return true;
     }
 

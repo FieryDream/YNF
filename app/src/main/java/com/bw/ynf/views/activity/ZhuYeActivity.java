@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.bw.ynf.R;
+import com.bw.ynf.interfaces.FragmentToFragment;
 import com.bw.ynf.utils.circleimageview.application.MyApp;
 import com.bw.ynf.utils.circleimageview.netutils.JudgeNetState;
 import com.bw.ynf.views.fragment.ClassifyFragment;
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * 御泥坊的主界面，最下方有四个按钮，分别对应着四个Fragment分类
  */
-public class ZhuYeActivity extends FragmentActivity implements View.OnClickListener{
+public class ZhuYeActivity extends FragmentActivity implements View.OnClickListener,FragmentToFragment{
 
     private TextView tvHome;
     private TextView tvClassify;
@@ -36,6 +37,11 @@ public class ZhuYeActivity extends FragmentActivity implements View.OnClickListe
     private MyApp app;
     private SharedPreferences sp;
     private boolean state;
+    private HomeFragment homeFragment;
+    private ClassifyFragment classifyFragment;
+    private ShopFragment shopFragment;
+    private UserFragment userFragment;
+    private FragmentToFragment toFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +83,20 @@ public class ZhuYeActivity extends FragmentActivity implements View.OnClickListe
         //设置默认选中首页
         list.get(0).setSelected(true);
         list.get(0).setTextColor(Color.RED);
+        //实例化出Fragment对象
+        homeFragment = new HomeFragment();
+        classifyFragment = new ClassifyFragment();
+        shopFragment = new ShopFragment(this);
+        userFragment = new UserFragment();
         //Fragment管理者对象
         fragmentManager = getSupportFragmentManager();
-        //默认显示首页
-        fragmentManager.beginTransaction().replace(R.id.frame_content,new HomeFragment()).commit();
+        //全部加载出来，默认显示首页，隐藏其他三个界面
+        fragmentManager.beginTransaction().add(R.id.frame_content,homeFragment)
+                .add(R.id.frame_content,classifyFragment)
+                .add(R.id.frame_content,shopFragment)
+                .add(R.id.frame_content,userFragment).commit();
+        fragmentManager.beginTransaction().show(homeFragment).hide(classifyFragment)
+                .hide(shopFragment).hide(userFragment).commit();
 
 
     }
@@ -101,7 +117,8 @@ public class ZhuYeActivity extends FragmentActivity implements View.OnClickListe
         switch (view.getId()){
             //点击选中首页
             case R.id.zhu_tv_home:
-                fragmentManager.beginTransaction().replace(R.id.frame_content,new HomeFragment()).commit();
+                fragmentManager.beginTransaction().show(homeFragment).hide(classifyFragment)
+                        .hide(shopFragment).hide(userFragment).commit();
                 //把所有的图片和字体颜色还原为默认状态
                 restartColor();
                 list.get(0).setSelected(true);
@@ -110,7 +127,8 @@ public class ZhuYeActivity extends FragmentActivity implements View.OnClickListe
                 break;
             //点击选中分类
             case R.id.zhu_tv_classify:
-                fragmentManager.beginTransaction().replace(R.id.frame_content,new ClassifyFragment()).commit();
+                fragmentManager.beginTransaction().show(classifyFragment).hide(homeFragment)
+                        .hide(shopFragment).hide(userFragment).commit();
                 //把所有的图片和字体颜色还原为默认状态
                 restartColor();
                 list.get(1).setSelected(true);
@@ -124,7 +142,8 @@ public class ZhuYeActivity extends FragmentActivity implements View.OnClickListe
                 boolean loginInfo = sp.getBoolean("succese", false);
                 //如果sp中存放有已登录信息，则进入购物车界面，否则else跳转到登陆界面
                 if(loginInfo){
-                    fragmentManager.beginTransaction().replace(R.id.frame_content,new ShopFragment()).commit();
+                    fragmentManager.beginTransaction().show(shopFragment).hide(homeFragment)
+                            .hide(classifyFragment).hide(userFragment).commit();
                     //把所有的图片和字体颜色还原为默认状态
                     restartColor();
                     list.get(2).setSelected(true);
@@ -134,12 +153,14 @@ public class ZhuYeActivity extends FragmentActivity implements View.OnClickListe
                     Intent intent=new Intent(ZhuYeActivity.this,LoGinActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.huanying_enter1,R.anim.huanying_exit1);
+
                 }
 
                 break;
             //点击选中我的
             case R.id.zhu_tv_user:
-                fragmentManager.beginTransaction().replace(R.id.frame_content,new UserFragment()).commit();
+                fragmentManager.beginTransaction().show(userFragment).hide(homeFragment)
+                        .hide(classifyFragment).hide(shopFragment).commit();
                 //把所有的图片和字体颜色还原为默认状态    
                 restartColor();
                 list.get(3).setSelected(true);
@@ -149,4 +170,15 @@ public class ZhuYeActivity extends FragmentActivity implements View.OnClickListe
         }
 
     }
+
+    @Override
+    public void shopToHome() {
+        fragmentManager.beginTransaction().show(homeFragment).hide(classifyFragment)
+                .hide(shopFragment).hide(userFragment).commit();
+        restartColor();
+        list.get(0).setSelected(true);
+        list.get(0).setTextColor(Color.RED);
+    }
+
+
 }

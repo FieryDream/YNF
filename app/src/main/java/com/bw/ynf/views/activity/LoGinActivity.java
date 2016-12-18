@@ -18,7 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.ynf.R;
+import com.bw.ynf.interfaces.FragmentToFragment;
 import com.bw.ynf.utils.circleimageview.application.MyApp;
+import com.bw.ynf.views.fragment.ClassifyFragment;
+import com.bw.ynf.views.fragment.HomeFragment;
+import com.bw.ynf.views.fragment.ShopFragment;
+import com.bw.ynf.views.fragment.UserFragment;
 import com.bw.ynf.views.popwindow.SimplePop;
 
 import java.util.Random;
@@ -46,11 +51,14 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
     private SharedPreferences.Editor userEdit;
     private int i;
     private SimplePop pop;
+    private String shopping;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lo_gin);
+
         //获得存放用户注册（手机号和密码）信息sp
         userSp = MyApp.getUserShared();
         //获得存放登陆信息的sp
@@ -215,6 +223,7 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
                         Toast.makeText(LoGinActivity.this, "账号密码错误", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(LoGinActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+
                         loginEdit.putBoolean("succese", true);
                         loginEdit.commit();
                         finish();
@@ -279,4 +288,5 @@ public class LoGinActivity extends AppCompatActivity implements View.OnClickList
         }
         return true;
     }
+
 }
